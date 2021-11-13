@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap');
+
+*{
+    box-sizing: border-box;
+    font-family: 'Yuji Syuku', serif;
+}
+
+hr{
+    margin:0;
+}
+
+/* Navigation Bar */
+.logo-img {
+  width: 100px;
+  height: 70px;
+  float: left;
+  position: relative;
+  margin: 0px 10px 0px 10px;
+  cursor: pointer;
+}
+
+.navbar-toggler{
+  margin-right:10px;
+}
+
+.nav-link{
+    font-size:18px;
+    margin: 0px 5px 0px 5px;
+}
+
+/* Home */
+.image-container{
+    margin:auto;
+    display:flex;
+    width:auto;
+    padding: 10px;
+    align-items:center;
+}
+
+.home-image{
+    width:250px;
+    height:auto;
+    object-fit: cover;
+}
