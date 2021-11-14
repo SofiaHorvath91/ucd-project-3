@@ -15,7 +15,13 @@ def home(request):
 
 
 def sorting(request):
-    return render(request, 'hogwarts_quiz/sorting.html', {})
+    context = {}
+    quiz = Quiz.objects.filter(name='Sorting Ceremony').first()
+    serializer = QuizSerializer(quiz)
+    data = JSONRenderer().render(serializer.data)
+    context['quiz'] = quiz
+    context['quiz_json'] = data.decode()
+    return render(request, 'hogwarts_quiz/sorting.html', context=context)
 
 
 def results(request):

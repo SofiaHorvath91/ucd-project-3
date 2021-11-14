@@ -3,7 +3,6 @@ from rest_framework import serializers
 
 
 class Answer(models.Model):
-    number = models.IntegerField(blank=True, null=True)
     answer = models.TextField(blank=True, null=True)
     house = models.TextField(blank=True, null=True)
     pass
@@ -18,7 +17,6 @@ class AnswerSerializer(serializers.ModelSerializer):
 
 class Question(models.Model):
     quiz = models.CharField(max_length=255, blank=True, null=True)
-    number = models.IntegerField(blank=True, null=True)
     question = models.TextField(blank=True, null=True)
     answers = models.ManyToManyField(Answer, related_name='answers', blank=True)
     pass

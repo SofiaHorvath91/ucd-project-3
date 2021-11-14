@@ -42,6 +42,10 @@ hr{
     margin:0;
 }
 
+.hidden{
+    display:none;
+}
+
 .bold{
     font-weight: bolder !important;
 }
@@ -192,7 +196,7 @@ nav {
     object-fit: cover;
 }
 
-#home-sorting-btn{
+.large-btn{
     font-size: 30px !important;
 }
 
@@ -266,7 +270,6 @@ nav {
 /* Resize */
 
 @media screen and (max-width: 500px) {
-
   .index-card{
     width: 280px;
   }
