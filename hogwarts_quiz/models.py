@@ -54,5 +54,21 @@ class Result(models.Model):
     hufflepuff = models.IntegerField(blank=True, null=True)
     ravenclaw = models.IntegerField(blank=True, null=True)
     slytherin = models.IntegerField(blank=True, null=True)
-    result = models.IntegerField(blank=True, null=True)
+    result = models.CharField(max_length=255, blank=True, null=True)
     comment = models.TextField(blank=True, null=True)
+
+
+class House(models.Model):
+    name = models.CharField(max_length=255, blank=True, null=True)
+    description = models.CharField(max_length=255, blank=True, null=True)
+    symbol = models.CharField(max_length=255, blank=True, null=True)
+    element = models.CharField(max_length=255, blank=True, null=True)
+    traits = models.CharField(max_length=255, blank=True, null=True)
+    founder = models.CharField(max_length=255, blank=True, null=True)
+    commonroom = models.CharField(max_length=255, blank=True, null=True)
+    ghost = models.CharField(max_length=255, blank=True, null=True)
+    students = models.IntegerField(blank=True, null=True)
+    gryffindor = models.IntegerField(blank=True, null=True)
+    hufflepuff = models.IntegerField(blank=True, null=True)
+    ravenclaw = models.IntegerField(blank=True, null=True)
+    slytherin = models.IntegerField(blank=True, null=True)
