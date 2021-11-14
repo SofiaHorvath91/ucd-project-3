@@ -1,3 +1,58 @@
 from django.db import models
+from rest_framework import serializers
 
-# Create your models here.
+
+class Answer(models.Model):
+    number = models.IntegerField(blank=True, null=True)
+    answer = models.TextField(blank=True, null=True)
+    house = models.TextField(blank=True, null=True)
+    pass
+
+
+class AnswerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Answer
+        fields = '__all__'
+        depth = 1
+
+
+class Question(models.Model):
+    quiz = models.CharField(max_length=255, blank=True, null=True)
+    number = models.IntegerField(blank=True, null=True)
+    question = models.TextField(blank=True, null=True)
+    answers = models.ManyToManyField(Answer, related_name='answers', blank=True)
+    pass
+
+
+class QuestionSerializer(serializers.ModelSerializer):
+    answers = AnswerSerializer(many=True)
+
+    class Meta:
+        model = Question
+        fields = '__all__'
+        depth = 2
+
+
+class Quiz(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField(blank=True, null=True)
+    questions = models.ManyToManyField(Question, related_name='questions', blank=True)
+
+
+class QuizSerializer(serializers.ModelSerializer):
+    questions = QuestionSerializer(many=True)
+
+    class Meta:
+        model = Quiz
+        fields = '__all__'
+        depth = 2
+
+
+class Result(models.Model):
+    quiz = models.CharField(max_length=255, blank=True, null=True)
+    gryffindor = models.IntegerField(blank=True, null=True)
+    hufflepuff = models.IntegerField(blank=True, null=True)
+    ravenclaw = models.IntegerField(blank=True, null=True)
+    slytherin = models.IntegerField(blank=True, null=True)
+    result = models.IntegerField(blank=True, null=True)
+    comment = models.TextField(blank=True, null=True)

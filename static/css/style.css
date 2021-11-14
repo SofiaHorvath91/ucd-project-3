@@ -5,10 +5,12 @@
   --hover-shadow: 0 0 10px black;
   --card-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   --black-text-border: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-  --gold-text-border: -2px 0 #ffc107, 0 2px #ffc107, 2px 0 #ffc107,
-    0 -2px #ffc107;
-  --gold-text-border-thin: -1px 0 #ffc107, 0 1px #ffc107, 1px 0 #ffc107,
-    0 -1px #ffc107;
+  --gryffindor-red: #dc3545;
+  --gryffindor-gold: #ffc107;
+  --hufflepuff-yellow: #ffc107;
+  --ravenclaw-blue: #0d6efd;
+  --ravenclaw-copper: #ff7c02;
+  --slytherin-green: #198754;
   --facebook: #3b5998;
   --twitter: #55acee;
   --email: #777777;
@@ -21,7 +23,7 @@
 }
 
 body {
-  margin: 100px 0 100px 0 !important;
+  margin: 100px 0 170px 0 !important;
   flex-wrap: wrap;
   clear: both;
 }
@@ -38,6 +40,10 @@ a{
 
 hr{
     margin:0;
+}
+
+.bold{
+    font-weight: bolder !important;
 }
 
 /* Navbar => Source / Inspiration :
@@ -180,4 +186,74 @@ nav {
     width:250px;
     height:auto;
     object-fit: cover;
+}
+
+#home-sorting-btn{
+    font-size: 30px !important;
+}
+
+.buttons-container {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: 0 4px;
+    width: 100%;
+    margin: auto;
+}
+
+.index-card {
+    border: none;
+    box-shadow: var(--card-shadow);
+    border-radius: 0.5rem;
+    margin: auto;
+    -ms-flex: 50%;
+    flex: 50%;
+    width: 300px;
+    padding: 0 4px;
+}
+
+.index-card-icon {
+    margin: 0.5rem 0 0.5rem 0;
+    width: 150px;
+    height: auto;
+}
+
+.gryffindor-btn,
+.gryffindor-btn:hover{
+    color: var(--gryffindor-gold);
+}
+
+.ravenclaw-btn,
+.ravenclaw-btn:hover{
+    color: var(--ravenclaw-copper);
+}
+
+.gryffindor-shadow{
+    color: var(--gryffindor-red);
+}
+
+.hufflepuff-shadow{
+    color: var(--hufflepuff-yellow);
+}
+
+.ravenclaw-shadow{
+    color: var(--ravenclaw-blue);
+}
+
+.slytherin-shadow{
+    color: var(--slytherin-green);
+}
+
+/* Resize */
+
+@media screen and (max-width: 500px) {
+  .buttons-container{
+    display:block;
+  }
+
+  .index-card{
+    width: 280px;
+  }
+
 }

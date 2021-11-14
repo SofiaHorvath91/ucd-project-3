@@ -6,7 +6,7 @@
         <br>
         <div class="row">
             <div class="col-xs-1 text-center">
-                <h1 class="display-4">Welcome to<br>Hogwarts School of Witchcraft and Wizardry!</h1>
+                <h1>Welcome to<br>Hogwarts School of Witchcraft and Wizardry!</h1>
             </div>
         </div>
         <div class="row mt-3 mb-4">
@@ -16,7 +16,106 @@
         </div>
         <div class="row">
             <div class="col-xs-1 text-center">
-                <h2>Get sorted in your Hogwarts House!</h2>
+                <h2>Ready to find your Hogwarts House and let the magic begin?</h2>
+            </div>
+        </div>
+        <div class="row mt-4 mb-4">
+            <div class="center-container">
+                <a class="btn btn btn-dark btn-lg" id="home-sorting-btn" href="{% url 'sorting' %}">
+                    <strong>Sorting Ceremony</strong>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-1 text-center">
+                <h3>There are four Houses in Hogwarts to host students with different personalities.<br>
+                Discover all houses and get sorted in yours during the Sorting Ceremony!</h3>
+            </div>
+        </div>
+        <div class="buttons-container mt-3 mb-2">
+            <div class="center-container mt-1">
+                <div class="index-card">
+                    <article>
+                        <header>
+                            <h3 class="mt-3 gryffindor-shadow"><strong>GRYFFINDOR</strong></h3>
+                            <img src="{% static '' %}img/gryffindor.png" class="index-card-icon" alt="">
+                        </header>
+                        <section class="mb-2">
+                            <p class="mt-2 mb-3 bold">
+                                You might belong in Gryffindor,
+                                <br>Where dwell the brave at heart,
+                                <br>Their daring, nerve and chivalry
+                                <br>Set Gryffindors apart.
+                            </p>
+                            <a class="btn btn btn-danger btn-lg gryffindor-btn mb-1" href="">
+                                <strong>House Gryffindor</strong>
+                            </a>
+                        </section>
+                    </article>
+                </div>
+            </div>
+            <div class="center-container mt-1">
+                <div class="index-card">
+                    <article>
+                        <header>
+                            <h3 class="mt-3 hufflepuff-shadow"><strong>HUFFLEPUFF</strong></h3>
+                            <img src="{% static '' %}img/hufflepuff.png" class="index-card-icon" alt="">
+                        </header>
+                        <section class="mb-2">
+                            <p class="mt-2 mb-3 bold">
+                                You might belong in Hufflepuff,
+                                <br>Where they are just and loyal,
+                                <br>Those patient Hufflepuffs are true
+                                <br>And unafraid of toil.
+                            </p>
+                            <a class="btn btn btn-warning btn-lg hufflepuff-btn mb-1" href="">
+                                <strong>House Hufflepuff</strong>
+                            </a>
+                        </section>
+                    </article>
+                </div>
+            </div>
+            <div class="center-container mt-1">
+                <div class="index-card">
+                    <article>
+                        <header>
+                            <h3 class="mt-3 ravenclaw-shadow"><strong>RAVENCLAW</strong></h3>
+                            <img src="{% static '' %}img/ravenclaw.png" class="index-card-icon" alt="">
+                        </header>
+                        <section class="mb-2">
+                            <p class="mt-2 mb-3 bold">
+                                Or yet in wise old Ravenclaw,
+                                <br>If you've a ready mind,
+                                <br>Where those of wit and learning,
+                                <br>Will always find their kind.
+                            </p>
+                            <a class="btn btn btn-primary btn-lg ravenclaw-btn mb-1" href="">
+                                <strong>House Ravenclaw</strong>
+                            </a>
+                        </section>
+                    </article>
+                </div>
+            </div>
+            <div class="center-container mt-1">
+                <div class="index-card">
+                    <article>
+                        <header>
+                            <h3 class="mt-3 slytherin-shadow"><strong>SLYTHERIN</strong></h3>
+                            <img src="{% static '' %}img/slytherin.png" class="index-card-icon" alt="">
+                        </header>
+                        <section class="mb-2">
+                            <p class="mt-2 mb-3 bold">
+                                Or perhaps in Slytherin
+                                <br>You'll make your real friends,
+                                <br>Those cunning folk use any means
+                                <br>To achieve their ends.
+                            </p>
+                            <a class="btn btn btn-success btn-lg slytherin-btn mb-1" href="">
+                                <strong>House Slytherin</strong>
+                            </a>
+                        </section>
+                    </article>
+                </div>
             </div>
         </div>
     </div>
