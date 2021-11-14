@@ -229,19 +229,19 @@ nav {
     color: var(--ravenclaw-copper);
 }
 
-.gryffindor-shadow{
+.gryffindor-txt{
     color: var(--gryffindor-red);
 }
 
-.hufflepuff-shadow{
+.hufflepuff-txt{
     color: var(--hufflepuff-yellow);
 }
 
-.ravenclaw-shadow{
+.ravenclaw-txt{
     color: var(--ravenclaw-blue);
 }
 
-.slytherin-shadow{
+.slytherin-txt{
     color: var(--slytherin-green);
 }
 
