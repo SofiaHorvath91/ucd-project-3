@@ -60,6 +60,7 @@ class Result(models.Model):
 
 class House(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
+    name_smallcaps = models.CharField(max_length=255, blank=True, null=True)
     description = models.TextField(max_length=1000, blank=True, null=True)
     symbol = models.TextField(max_length=1000, blank=True, null=True)
     element = models.TextField(max_length=1000, blank=True, null=True)
