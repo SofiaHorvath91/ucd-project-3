@@ -46,6 +46,10 @@ hr{
     font-weight: bolder !important;
 }
 
+.uppercase-txt {
+   text-transform: uppercase;
+}
+
 /* Navbar => Source / Inspiration :
 https://getbootstrap.com/docs/4.4/components/navs/
 https://www.w3schools.com/howto/howto_js_navbar_sticky.asp */
@@ -222,11 +226,25 @@ nav {
 .gryffindor-btn,
 .gryffindor-btn:hover{
     color: var(--gryffindor-gold);
+    background-color: var(--gryffindor-red) !important;
 }
 
 .ravenclaw-btn,
 .ravenclaw-btn:hover{
     color: var(--ravenclaw-copper);
+    background-color: var(--ravenclaw-blue) !important;
+}
+
+.slytherin-btn,
+.slytherin-btn:hover{
+    color: white;
+    background-color: var(--slytherin-green) !important;
+}
+
+.hufflepuff-btn,
+.hufflepuff-btn:hover{
+    color: black;
+    background-color: var(--hufflepuff-yellow) !important;
 }
 
 .gryffindor-txt{
@@ -248,9 +266,6 @@ nav {
 /* Resize */
 
 @media screen and (max-width: 500px) {
-  .buttons-container{
-    display:block;
-  }
 
   .index-card{
     width: 280px;
