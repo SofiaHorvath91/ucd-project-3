@@ -57,6 +57,7 @@ hr{
 /* Navbar => Source / Inspiration :
 https://getbootstrap.com/docs/4.4/components/navs/
 https://www.w3schools.com/howto/howto_js_navbar_sticky.asp */
+
 nav {
   right: 0;
   left: 0;
@@ -182,6 +183,7 @@ nav {
 }
 
 /* Home */
+
 .center-container {
   margin: auto;
   display: flex;
@@ -265,6 +267,14 @@ nav {
 
 .slytherin-txt{
     color: var(--slytherin-green);
+}
+
+/* Sorting Ceremony */
+
+.answer,
+.answer_label,
+#question-quiz{
+    font-size: 22px;
 }
 
 /* Resize */

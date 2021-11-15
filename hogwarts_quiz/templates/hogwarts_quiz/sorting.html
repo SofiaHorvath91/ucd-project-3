@@ -28,46 +28,53 @@
     </div>
     <div class="hidden" id="quiz-container">
         <div class="col-9">
-            <div class="row">
+            <div class="row mb-1">
                 <div class="col-12">
                     <p id="question-quiz"></p>
                 </div>
             </div>
              <div class="row">
                 <div class="col-12">
-                    <input type="checkbox" name="answer_1" id="answer_1" class="answer">
-                    <label for="answer_1" id="answer1_label" class="answer_label"></label>
+                    <input type="checkbox" name="answer_1" id="answer_1" class="answer answer_1">
+                    <label for="answer_1" id="answer_1_label" class="answer_label"></label>
+                    <label id="answer_1_house" class="hidden"></label>
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-12">
-                    <input type="checkbox" name="answer_2" id="answer_2" class="answer">
-                    <label for="answer_2" id="answer2_label" class="answer_label"></label>
+                    <input type="checkbox" name="answer_2" id="answer_2" class="answer answer_2">
+                    <label for="answer_2" id="answer_2_label" class="answer_label"></label>
+                    <label id="answer_2_house" class="hidden"></label>
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-12">
-                    <input type="checkbox" name="answer_3" id="answer_3" class="answer">
-                    <label for="answer_3" id="answer3_label" class="answer_label"></label>
+                    <input type="checkbox" name="answer_3" id="answer_3" class="answer answer_3">
+                    <label for="answer_3" id="answer_3_label" class="answer_label"></label>
+                    <label id="answer_3_house" class="hidden"></label>
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-12">
-                    <input type="checkbox" name="answer_4" id="answer_4" class="answer">
-                    <label for="answer_4" id="answer4_label" class="answer_label"></label>
+                    <input type="checkbox" name="answer_4" id="answer_4" class="answer answer_4">
+                    <label for="answer_4" id="answer_4_label" class="answer_label"></label>
+                    <label id="answer_4_house" class="hidden"></label>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="col-12">
                     <input type="submit" id='next-btn' class="btn btn-lg btn-secondary" value="Next Question">
-                    <form method="POST" id="quiz-end-form" class="hidden">
+                    <form method="POST" id="quiz-end-form">
                     {% csrf_token %}
                         <div class="form-group hidden">
-                            <input type="number" id="result-maxpoint" name="result-maxpoint" class="form-control"/>
-                            <input type="number" id="result-result" name="result-result" class="form-control"/>
+                            <input type="number" id="result-gryffindor" name="result-gryffindor" class="form-control"/>
+                            <input type="number" id="result-hufflepuff" name="result-hufflepuff" class="form-control"/>
+                            <input type="number" id="result-ravenclaw" name="result-ravenclaw" class="form-control"/>
+                            <input type="number" id="result-slytherin" name="result-slytherin" class="form-control"/>
+                            <input type="text" id="result-finalresult" name="result-finalresult" class="form-control"/>
                             <input type="text" id="result-comment" name="result-comment" class="form-control"/>
                         </div>
-                        <input type="submit" id='end-btn' class="btn btn-lg btn-dark" value="Finish Quiz">
+                        <input type="submit" id='end-btn' class="btn btn-lg btn-dark hidden" value="Finish Quiz">
                     </form>
                 </div>
             </div>
