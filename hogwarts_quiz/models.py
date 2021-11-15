@@ -52,6 +52,7 @@ class Result(models.Model):
     hufflepuff = models.IntegerField(blank=True, null=True)
     ravenclaw = models.IntegerField(blank=True, null=True)
     slytherin = models.IntegerField(blank=True, null=True)
+    selected_house = models.TextField(max_length=50, blank=True, null=True)
     result = models.CharField(max_length=600, blank=True, null=True)
     comment = models.TextField(max_length=1000, blank=True, null=True)
 

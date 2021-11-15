@@ -84,6 +84,8 @@ $('#next-btn').click(function () {
         sortingNextQuestionBtn.classList.add("hidden");
         sortingEndBtn.classList.remove("hidden");
 
+
+
     }
 });
 
