@@ -33,19 +33,19 @@ def sorting(request):
         resultHouse = ''
         resultComment = ''
         if resultGryffindor == resultMaxPoint:
-            resultHouse += 'gryffindor '
+            resultHouse += 'Gryffindor '
             house = House.objects.filter(name='Gryffindor').first()
             resultComment += house.keywords
         if resultHufflepuff == resultMaxPoint:
-            resultHouse += 'hufflepuff '
+            resultHouse += 'Hufflepuff '
             house = House.objects.filter(name='Hufflepuff').first()
             resultComment += house.keywords
         if resultRavenclaw == resultMaxPoint:
-            resultHouse += 'ravenclaw '
+            resultHouse += 'Ravenclaw '
             house = House.objects.filter(name='Ravenclaw').first()
             resultComment += house.keywords
         if resultSlytherin == resultMaxPoint:
-            resultHouse += 'slytherin'
+            resultHouse += 'Slytherin'
             house = House.objects.filter(name='Slytherin').first()
             resultComment += house.keywords
 
@@ -64,7 +64,31 @@ def sorting(request):
 
 
 def sorting_result(request, id):
-    return render(request, 'hogwarts_quiz/sorting-result.html', {})
+    context = {}
+
+    result_house = Result.objects.filter(id=id).first()
+    context['result'] = result_house
+
+    houses = []
+    title_house = ''
+    if len(result_house.result) <= 10:
+        title_house += 'House ' + result_house.result.strip()
+        house = House.objects.filter(name=result_house.result.strip()).first()
+        houses.append(house)
+    else:
+        title_house += 'Houses '
+        result_houses = result_house.result.split(' ')
+        for h in result_houses:
+            house = House.objects.filter(name=h.strip()).first()
+            houses.append(house)
+            if h == result_houses[-1]:
+                title_house += h.strip()
+            else:
+                title_house += h.strip() + ' & '
+    context['title'] = title_house
+    context['houses'] = houses
+
+    return render(request, 'hogwarts_quiz/sorting-result.html', context=context)
 
 
 def results(request):

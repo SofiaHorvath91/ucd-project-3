@@ -64,6 +64,11 @@ $('.answer').change(function () {
 
 /* Handle click on Next Question button : setting next question and store answer value */
 $('#next-btn').click(function () {
+    var isChecked = $('input:checkbox').is(':checked');
+    if (!isChecked) {
+        alert("Please select an answer!");
+        return;
+    }
     addHousePoints(selectedAnswer);
     ++currIndex;
 

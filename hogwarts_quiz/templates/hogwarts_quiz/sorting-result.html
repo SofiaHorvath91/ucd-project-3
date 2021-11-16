@@ -2,6 +2,18 @@
 {% block content %}
 {% load static %}
 <div class="container">
-
+    <div class="row">
+        <div class="col-xs-1 text-center">
+            <h2>You belong to</h2>
+            <h1>{{title}}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="center-container">
+            {% for h in houses %}
+                <img src="{% static '' %}img/{{h.name_smallcaps}}.png" class="sorting-houses-icon" alt="">
+            {% endfor %}
+        </div>
+    </div>
 </div>
 {% endblock content %}s
