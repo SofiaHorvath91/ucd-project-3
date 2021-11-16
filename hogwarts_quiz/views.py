@@ -21,7 +21,50 @@ def sorting(request):
     data = JSONRenderer().render(serializer.data)
     context['quiz'] = quiz
     context['quiz_json'] = data.decode()
-    return render(request, 'hogwarts_quiz/sorting.html', context=context)
+
+    if request.method == "POST":
+        resultMaxPoint = request.POST['result-maxpoint']
+        resultSelectedHouse = request.POST['result-selectedhouse']
+        resultGryffindor = request.POST['result-gryffindor']
+        resultHufflepuff = request.POST['result-hufflepuff']
+        resultRavenclaw = request.POST['result-ravenclaw']
+        resultSlytherin = request.POST['result-slytherin']
+
+        resultHouse = ''
+        resultComment = ''
+        if resultGryffindor == resultMaxPoint:
+            resultHouse += 'gryffindor '
+            house = House.objects.filter(name='Gryffindor').first()
+            resultComment += house.keywords
+        if resultHufflepuff == resultMaxPoint:
+            resultHouse += 'hufflepuff '
+            house = House.objects.filter(name='Hufflepuff').first()
+            resultComment += house.keywords
+        if resultRavenclaw == resultMaxPoint:
+            resultHouse += 'ravenclaw '
+            house = House.objects.filter(name='Ravenclaw').first()
+            resultComment += house.keywords
+        if resultSlytherin == resultMaxPoint:
+            resultHouse += 'slytherin'
+            house = House.objects.filter(name='Slytherin').first()
+            resultComment += house.keywords
+
+        result = Result.objects.create(quiz=quiz.name,
+                                       result=resultHouse,
+                                       comment = resultComment,
+                                       selected_house=resultSelectedHouse,
+                                       gryffindor=resultGryffindor,
+                                       hufflepuff=resultHufflepuff,
+                                       ravenclaw=resultRavenclaw,
+                                       slytherin=resultSlytherin)
+
+        return redirect('sorting-result', id=result.id)
+    else:
+        return render(request, 'hogwarts_quiz/sorting.html', context=context)
+
+
+def sorting_result(request, id):
+    return render(request, 'hogwarts_quiz/sorting-result.html', {})
 
 
 def results(request):

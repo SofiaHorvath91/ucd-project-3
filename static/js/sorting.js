@@ -8,16 +8,17 @@ let quizAnswers = document.getElementsByClassName("answer_label");
 let sortingNextQuestionBtn = document.getElementById("next-btn");
 let sortingEndBtn = document.getElementById("end-btn");
 
-let result = document.getElementById('result-finalresult');
+let resultMaxPoint = document.getElementById('result-maxpoint');
+let resultSelectedHouse = document.getElementById('result-selectedhouse');
 let resultGryffindor = document.getElementById('result-gryffindor');
 let resultHufflepuff = document.getElementById('result-hufflepuff');
 let resultRavenclaw = document.getElementById('result-ravenclaw');
 let resultSlytherin = document.getElementById('result-slytherin');
-let comment = document.getElementById('result-comment');
 
 let questionsAnswers = quizJSON.questions
 let currQuestion;
 let selectedAnswer;
+let selectedHouse;
 
 let currIndex = 0;
 let endIndex = questionsAnswers.length;
@@ -46,7 +47,7 @@ $('.answer_label').click(function () {
             quizCheckboxes[i].checked = false;
         }
     }
-    selectedAnswer =  document.getElementById(houseId).innerHTML;
+    setSelectedAnswer(houseId);
 });
 
 /* Handle click on answer checkbox (check it and uncheck all others + store selected answer) */
@@ -58,37 +59,36 @@ $('.answer').change(function () {
             quizCheckboxes[i].checked = false;
         }
     }
-    selectedAnswer =  document.getElementById(houseId).innerHTML;
+    setSelectedAnswer(houseId);
 });
 
 /* Handle click on Next Question button : setting next question and store answer value */
 $('#next-btn').click(function () {
-    switch (selectedAnswer) {
-        case 'gryffindor':
-            countGryffindor++;
-            break;
-        case 'hufflepuff':
-            countHufflepuff++;
-            break;
-        case 'ravenclaw':
-            countRavenclaw++;
-        case 'slytherin':
-            countSlytherin++;
-    }
-
-    updateAnswers();
+    addHousePoints(selectedAnswer);
     ++currIndex;
-    setQuestion();
 
-    if (currIndex == endIndex - 1) {
+    if(currIndex < endIndex){
+        updateAnswers();
+        setQuestion();
+    } else{
+        var maxCount = 0;
+        var houses = [countGryffindor, countHufflepuff, countRavenclaw, countSlytherin];
+        for (var i = 0; i < houses.length; i++) {
+            if (houses[i] > maxCount) {
+                maxCount = houses[i];
+            }
+        }
+        resultSelectedHouse.value = selectedHouse;
+        resultMaxPoint.value = convertToPercentage(maxCount);
+        resultGryffindor.value = convertToPercentage(countGryffindor);
+        resultHufflepuff.value = convertToPercentage(countHufflepuff);
+        resultRavenclaw.value = convertToPercentage(countRavenclaw);
+        resultSlytherin.value = convertToPercentage(countSlytherin);
+
         sortingNextQuestionBtn.classList.add("hidden");
         sortingEndBtn.classList.remove("hidden");
-
-
-
     }
 });
-
 
 /* Set current question and answers */
 function setQuestion(){
@@ -116,7 +116,33 @@ function updateAnswers(){
     }
 }
 
+/* Save choice and selected house when clicking on answer checkbox/label */
+function setSelectedAnswer(houseId){
+    selectedAnswer =  document.getElementById(houseId).innerHTML;
+    if(currQuestion.question == "The Sorting Hat considers your own choice too - so which house you would prefer?"){
+        selectedHouse = document.getElementById(houseId).innerHTML;
+    }
+}
+
+/* Increment of points / houses at stepping to next question */
+function addHousePoints(answerSelected){
+    switch (answerSelected) {
+        case 'gryffindor':
+            countGryffindor++;
+            break;
+        case 'hufflepuff':
+            countHufflepuff++;
+            break;
+        case 'ravenclaw':
+            countRavenclaw++;
+            break;
+        case 'slytherin':
+            countSlytherin++;
+            break;
+    }
+}
+
 /* Convert number to percentage for final house results */
 function convertToPercentage(num){
-    return parseFloat(((parseInt(num) / endIndex) * 100)).toFixed(2);
+    return parseFloat(((parseInt(num) / endIndex) * 100)).toFixed(0);
 }
