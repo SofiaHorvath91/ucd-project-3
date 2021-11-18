@@ -2,20 +2,20 @@
 {% block content %}
 {% load static %}
 <div class="container">
-    <div id="quiz-starter">
-        <div class="row mb-2">
-            <div class="col-xs-1 text-center">
-                <h1>{{quiz.name}}</h1>
-            </div>
+    <div class="row mb-2">
+        <div class="col-xs-1 text-center">
+            <h1>{{quiz.name}}</h1>
         </div>
-        <div class="row mb-2">
+    </div>
+    <div id="quiz-starter">
+        <div class="row mb-1">
             <div class="center-container">
                 <img class="home-image" src="{% static '' %}img/sortinghat.png" />
             </div>
         </div>
         <div class="row">
             <div class="col-xs-1 text-center">
-                <p class="bold">{{quiz.description|linebreaks}}</p>
+                <p><b>{{quiz.description|linebreaks}}</b></p>
             </div>
         </div>
         <div class="row mt-4 mb-4">
@@ -27,56 +27,63 @@
         </div>
     </div>
     <div class="hidden" id="quiz-container">
-        <div class="col-9">
-            <div class="row mb-1">
-                <div class="col-12">
-                    <p id="question-quiz"></p>
+        <div class="row mt-3 mb-4">
+            <div class="center-container">
+                <img src="{% static '' %}img/hogwarts.png" class="sorting-houses-icon" alt="">
+            </div>
+        </div>
+        <div class="white-card bold">
+            <div class="col-9">
+                <div class="row mb-1">
+                    <div class="col-12">
+                        <p id="question-quiz"></p>
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-12">
+                        <input type="checkbox" name="answer_1" id="answer_1" class="answer answer_1">
+                        <label for="answer_1" id="answer_1_label" class="answer_label"></label>
+                        <label id="answer_1_house" class="hidden"></label>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <input type="checkbox" name="answer_2" id="answer_2" class="answer answer_2">
+                        <label for="answer_2" id="answer_2_label" class="answer_label"></label>
+                        <label id="answer_2_house" class="hidden"></label>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <input type="checkbox" name="answer_3" id="answer_3" class="answer answer_3">
+                        <label for="answer_3" id="answer_3_label" class="answer_label"></label>
+                        <label id="answer_3_house" class="hidden"></label>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <input type="checkbox" name="answer_4" id="answer_4" class="answer answer_4">
+                        <label for="answer_4" id="answer_4_label" class="answer_label"></label>
+                        <label id="answer_4_house" class="hidden"></label>
+                    </div>
                 </div>
             </div>
-             <div class="row">
-                <div class="col-12">
-                    <input type="checkbox" name="answer_1" id="answer_1" class="answer answer_1">
-                    <label for="answer_1" id="answer_1_label" class="answer_label"></label>
-                    <label id="answer_1_house" class="hidden"></label>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-12">
-                    <input type="checkbox" name="answer_2" id="answer_2" class="answer answer_2">
-                    <label for="answer_2" id="answer_2_label" class="answer_label"></label>
-                    <label id="answer_2_house" class="hidden"></label>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-12">
-                    <input type="checkbox" name="answer_3" id="answer_3" class="answer answer_3">
-                    <label for="answer_3" id="answer_3_label" class="answer_label"></label>
-                    <label id="answer_3_house" class="hidden"></label>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-12">
-                    <input type="checkbox" name="answer_4" id="answer_4" class="answer answer_4">
-                    <label for="answer_4" id="answer_4_label" class="answer_label"></label>
-                    <label id="answer_4_house" class="hidden"></label>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-12">
-                    <input type="submit" id='next-btn' class="btn btn-lg btn-secondary" value="Next Question">
-                    <form method="POST" id="quiz-end-form">
-                    {% csrf_token %}
-                        <div class="form-group hidden">
-                            <input type="number" id="result-gryffindor" name="result-gryffindor" class="form-control"/>
-                            <input type="number" id="result-hufflepuff" name="result-hufflepuff" class="form-control"/>
-                            <input type="number" id="result-ravenclaw" name="result-ravenclaw" class="form-control"/>
-                            <input type="number" id="result-slytherin" name="result-slytherin" class="form-control"/>
-                            <input type="number" id="result-maxpoint" name="result-maxpoint" class="form-control"/>
-                            <input type="text" id="result-selectedhouse" name="result-selectedhouse" class="form-control"/>
-                        </div>
-                        <input type="submit" id='end-btn' class="btn btn-lg btn-dark hidden" value="Finish Sorting">
-                    </form>
-                </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                <input type="submit" id='next-btn' class="btn btn-lg btn-secondary" value="Next Question">
+                <form method="POST" id="quiz-end-form">
+                {% csrf_token %}
+                    <div class="form-group hidden">
+                        <input type="number" id="result-gryffindor" name="result-gryffindor" class="form-control"/>
+                        <input type="number" id="result-hufflepuff" name="result-hufflepuff" class="form-control"/>
+                        <input type="number" id="result-ravenclaw" name="result-ravenclaw" class="form-control"/>
+                        <input type="number" id="result-slytherin" name="result-slytherin" class="form-control"/>
+                        <input type="number" id="result-maxpoint" name="result-maxpoint" class="form-control"/>
+                        <input type="text" id="result-selectedhouse" name="result-selectedhouse" class="form-control"/>
+                    </div>
+                    <input type="submit" id='end-btn' class="btn btn-lg btn-dark hidden" value="Finish Sorting">
+                </form>
             </div>
         </div>
     </div>
