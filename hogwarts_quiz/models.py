@@ -16,6 +16,7 @@ class AnswerSerializer(serializers.ModelSerializer):
 
 
 class Question(models.Model):
+    number = models.IntegerField(blank=True, null=True)
     quiz = models.CharField(max_length=255, blank=True, null=True)
     question = models.TextField(blank=True, null=True)
     answers = models.ManyToManyField(Answer, related_name='answers', blank=True)
@@ -54,12 +55,10 @@ class Result(models.Model):
     slytherin = models.IntegerField(blank=True, null=True)
     selected_house = models.TextField(max_length=50, blank=True, null=True)
     result = models.CharField(max_length=600, blank=True, null=True)
-    comment = models.TextField(max_length=1000, blank=True, null=True)
 
 
 class House(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
-    name_smallcaps = models.CharField(max_length=255, blank=True, null=True)
     keywords = models.TextField(max_length=500, blank=True, null=True)
     description = models.TextField(max_length=1000, blank=True, null=True)
     symbol = models.TextField(max_length=1000, blank=True, null=True)
