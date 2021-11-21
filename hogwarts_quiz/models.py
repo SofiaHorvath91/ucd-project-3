@@ -68,6 +68,7 @@ class House(models.Model):
     commonroom = models.TextField(max_length=5000, blank=True, null=True)
     ghost = models.TextField(max_length=1000, blank=True, null=True)
     students = models.IntegerField(blank=True, null=True)
+    selected = models.IntegerField(blank=True, null=True)
     gryffindor = models.IntegerField(blank=True, null=True)
     hufflepuff = models.IntegerField(blank=True, null=True)
     ravenclaw = models.IntegerField(blank=True, null=True)

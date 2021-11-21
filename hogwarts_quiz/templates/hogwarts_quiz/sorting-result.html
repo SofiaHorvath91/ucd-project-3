@@ -25,9 +25,10 @@
                     <div class="index-card">
                         <article>
                             <header>
-                                <h3 class="mt-3 uppercase-txt {{h.name}}-txt"><strong>{{h.name}}</strong></h3>
-                                <img src="{% static '' %}img/{{h.name}}.png" class="index-card-icon" alt="">
-                                <div class="row">
+                                <h3 class="mt-3 mb-4 uppercase-txt {{h.name}}-txt"><strong>{{h.name}}</strong></h3>
+                                <img src="{% static '' %}img/sorting_{{h.name}}.png"
+                                     class="sorting-houses-icon" alt="">
+                                <div class="row mt-4">
                                     <div class="center-container">
                                         {% if h.name in 'gryffindor' %}
                                             <h3 class="mt-1 uppercase-txt result-label {{h.name}}-btn
@@ -79,9 +80,9 @@
                     <div class="index-card">
                         <article>
                             <header>
-                                <h3 class="mt-3 uppercase-txt {{h.name}}-txt"><strong>{{h.name}}</strong></h3>
-                                <img src="{% static '' %}img/{{h.name}}.png" class="index-card-icon" alt="">
-                                <div class="row">
+                                <h3 class="mt-3 mb-4 uppercase-txt {{h.name}}-txt"><strong>{{h.name}}</strong></h3>
+                                <img src="{% static '' %}img/sorting_{{h.name}}.png" class="sorting-houses-icon" alt="">
+                                <div class="row mt-4">
                                     <div class="center-container">
                                         {% if h.name in 'gryffindor' %}
                                             <h3 class="mt-1 uppercase-txt result-label {{h.name}}-btn

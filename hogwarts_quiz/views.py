@@ -130,11 +130,21 @@ def sorting_result(request, id):
 
 
 def results(request):
-    return render(request, 'hogwarts_quiz/results.html', {})
+    context = {}
+    houses = House.objects.all()
 
+    for h in houses:
+        h.students = get_all_results(h.name)[0]
+        h.selected = get_all_results(h.name)[1]
+        h.gryffindor = get_all_results(h.name)[2]
+        h.hufflepuff = get_all_results(h.name)[3]
+        h.ravenclaw = get_all_results(h.name)[4]
+        h.slytherin = get_all_results(h.name)[5]
+        h.save()
 
-def feedback(request):
-    return render(request, 'hogwarts_quiz/feedback.html', {})
+    context['houses'] = houses
+
+    return render(request, 'hogwarts_quiz/results.html', context=context)
 
 
 def firstletter_uppercase(name):
@@ -203,5 +213,34 @@ def get_other_house(result_house):
             other_houses.append(h)
 
     return other_houses
+
+
+def get_all_results(house):
+    all_results = Result.objects.all()
+
+    count = 0
+    selected = 0
+    gryffindor_result = 0
+    hufflepuff_result = 0
+    ravenclaw_result = 0
+    slytherin_result = 0
+
+    for r in all_results:
+        if house in r.result:
+            count += 1
+            gryffindor_result += r.gryffindor
+            hufflepuff_result += r.hufflepuff
+            ravenclaw_result += r.ravenclaw
+            slytherin_result += r.slytherin
+
+            if r.selected_house in r.result:
+                selected += 1
+
+    if count > 0:
+        selected = int(point_to_percentage(selected, count))
+
+    counts = [count, selected, gryffindor_result, hufflepuff_result, ravenclaw_result, slytherin_result]
+    return counts
+
 
 
