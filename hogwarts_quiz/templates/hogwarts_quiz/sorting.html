@@ -1,115 +1,131 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
-<div class="container">
-    <div class="row mb-2">
-        <div class="col-xs-1 text-center">
-            <h1>{{quiz_name}}</h1>
-        </div>
-    </div>
-    {% if game_start is True %}
-    <div id="quiz-starter">
-        <div class="row mb-1">
-            <div class="center-container">
-                <img class="home-image" src="{% static '' %}img/sortinghat.png" />
-            </div>
-        </div>
-        <div class="row">
+<main>
+    <div class="container">
+        <!-- Page Title -->
+        <div class="row mb-2">
             <div class="col-xs-1 text-center">
-                <p><b>{{quiz.description|linebreaks}}</b></p>
+                <h1>{{quiz_name}}</h1>
             </div>
         </div>
-        <div class="row mt-4 mb-4">
-            <div class="center-container">
-                <form method="POST">
-                {% csrf_token %}
-                    <input type="submit" id='sorting_start' name='sorting_start'
-                           class="btn btn btn-dark btn-lg large-btn" value="Start Sorting">
-                </form>
-            </div>
-        </div>
-    </div>
-    {% endif %}
-    <div id="quiz-container">
-        {% if game_on is True %}
-        <div class="row mt-3 mb-4">
-            <div class="center-container">
-                <img src="{% static '' %}img/sorting-hat-icon.png" class="sorting-houses-icon" alt="">
-            </div>
-        </div>
-        <form method="POST">
-            {% csrf_token %}
-            <div class="white-card bold">
-                <div class="col-9">
-                    <div class="row mb-1">
-                        <div class="col-12">
-                            <p id="question-quiz">
-                                {{current_question.number}}. {{current_question.question}}
-                            </p>
-                        </div>
-                    </div>
-                    {% for a in answers %}
-                     <div class="row">
-                        <div class="col-12">
-                            <input type="radio" name="answers_options" id="{{a.house}}" value="{{a.house}}" class="answer">
-                            <label for="{{a.house}}" id="{{a.house}}_label" class="answer_label">{{a.answer}}</label>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-12">
-                    <input type="number" id="count_gryffindor" name="count_gryffindor"
-                           class="hidden" value="{{gryffindor_count}}"/>
-                    <input type="number" id="count_hufflepuff" name="count_hufflepuff"
-                           class="hidden" value="{{hufflepuff_count}}"/>
-                    <input type="number" id="count_ravenclaw" name="count_ravenclaw"
-                           class="hidden" value="{{ravenclaw_count}}"/>
-                    <input type="number" id="count_slytherin" name="count_slytherin"
-                           class="hidden" value="{{slytherin_count}}"/>
-                    <input type="number" id="current_index" name="current_index"
-                           class="hidden" value="{{current_question.number}}"/>
-
-                    <input type="submit" id='next_question' name='next_question'
-                           class="btn btn-lg btn-secondary" value="Next Question">
-                </div>
-            </div>
-        </form>
-        {% endif %}
-        {% if game_end is True  %}
-        <div id="quiz-end">
-            <div class="row mt-3 mb-4">
-                <div class="col-xs-1 text-center">
-                    <h2>Ceremony is over, Sorting Hat is making the decision!</h2>
+        <!-- Sorting Starter Container - Rules & Game Start -->
+        {% if game_start is True %}
+        <div id="quiz-starter">
+            <div class="row mb-1">
+                <div class="center-container">
+                    <img class="home-image" src="{% static '' %}img/sortinghat.png" alt="Sorting Hat"/>
                 </div>
             </div>
             <div class="row">
-                <div class="center-container">
-                <img src="{% static '' %}img/sorting_gryffindor.png" class="sorting-houses-icon" alt="">
-                <img src="{% static '' %}img/sorting_hufflepuff.png" class="sorting-houses-icon" alt="">
-                <img src="{% static '' %}img/sorting_ravenclaw.png" class="sorting-houses-icon" alt="">
-                <img src="{% static '' %}img/sorting_slytherin.png" class="sorting-houses-icon" alt="">
+                <div class="col-xs-1 text-center">
+                    <p><b>{{quiz.description|linebreaks}}</b></p>
                 </div>
             </div>
             <div class="row mt-4 mb-4">
-                <div class="col-xs-1 text-center">
-                    <h2>Are you ready to get sorted?</h2>
-                </div>
-            </div>
-            <div class="row">
                 <div class="center-container">
                     <form method="POST">
                     {% csrf_token %}
-                        <input type="number" id="result_id" name="result_id"
-                               class="hidden" value="{{result_id}}"/>
-                        <input type="submit" id='end_quiz' name='end_quiz'
-                               class="btn btn-lg btn-dark" value="See My House">
+                        <input type="submit" id='sorting_start' name='sorting_start'
+                               class="btn btn btn-dark btn-lg large-btn" value="Start Sorting">
                     </form>
                 </div>
             </div>
         </div>
         {% endif %}
+        <!-- Sorting Quiz Container - Question & Answers -->
+        <div id="quiz-container">
+            {% if game_on is True %}
+            <div class="row mt-3 mb-4">
+                <div class="center-container">
+                    <img src="{% static '' %}img/sorting-hat-icon.png" class="sorting-houses-icon" alt="Sorting Hat">
+                </div>
+            </div>
+            <!-- Question & Answers Card -->
+            <form method="POST">
+                {% csrf_token %}
+                <div class="white-card bold">
+                    <div class="col-9">
+                        <!-- Question -->
+                        <div class="row mb-2">
+                            <div class="col-12">
+                                <p id="question-quiz">
+                                    {{current_question.number}}. {{current_question.question}}
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Answers -->
+                        {% for a in answers %}
+                         <div class="row mb-2">
+                            <div class="col-12">
+                                <input type="radio" name="answers_options" id="{{a.house}}"
+                                       value="{{a.house}}" class="answer" required>
+                                <label for="{{a.house}}" id="{{a.house}}_label" class="answer_label">{{a.answer}}</label>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- Next Question Button with inputs for holding/passing user results & current question's index number -->
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <input type="number" id="count_gryffindor" name="count_gryffindor"
+                               class="hidden" value="{{gryffindor_count}}"/>
+                        <input type="number" id="count_hufflepuff" name="count_hufflepuff"
+                               class="hidden" value="{{hufflepuff_count}}"/>
+                        <input type="number" id="count_ravenclaw" name="count_ravenclaw"
+                               class="hidden" value="{{ravenclaw_count}}"/>
+                        <input type="number" id="count_slytherin" name="count_slytherin"
+                               class="hidden" value="{{slytherin_count}}"/>
+                        <input type="number" id="current_index" name="current_index"
+                               class="hidden" value="{{current_question.number}}"/>
+
+                        <input type="submit" id='next_question' name='next_question'
+                               class="btn btn-lg btn-secondary" value="Next Question">
+                    </div>
+                </div>
+            </form>
+            {% endif %}
+            <!-- Sorting End Container -->
+            {% if game_end is True  %}
+            <div id="quiz-end">
+                <div class="row mt-3 mb-4">
+                    <div class="col-xs-1 text-center">
+                        <h2>Ceremony is over, Sorting Hat is making the decision!</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="center-container">
+                    <img src="{% static '' %}img/sorting_gryffindor.png"
+                         class="sorting-houses-icon sorting-end-icon" alt="Is it Gryffindor?">
+                    <img src="{% static '' %}img/sorting_hufflepuff.png"
+                         class="sorting-houses-icon sorting-end-icon" alt="Is it Hufflepuff?">
+                    <img src="{% static '' %}img/sorting_ravenclaw.png"
+                         class="sorting-houses-icon sorting-end-icon" alt="Is it Ravenclaw?">
+                    <img src="{% static '' %}img/sorting_slytherin.png"
+                         class="sorting-houses-icon sorting-end-icon" alt="Is it Slytherin?">
+                    </div>
+                </div>
+                <div class="row mt-4 mb-4">
+                    <div class="col-xs-1 text-center">
+                        <h2>Are you ready to get sorted?</h2>
+                    </div>
+                </div>
+                <!-- Sorting End Button with input for passing the id of the current game's result -->
+                <div class="row">
+                    <div class="center-container">
+                        <form method="POST">
+                        {% csrf_token %}
+                            <input type="number" id="result_id" name="result_id"
+                                   class="hidden" value="{{result_id}}"/>
+                            <input type="submit" id='end_quiz' name='end_quiz'
+                                   class="btn btn-lg btn-dark" value="See My House">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
     </div>
-</div>
+</main>
 {% endblock content %}

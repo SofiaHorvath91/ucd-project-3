@@ -1,4 +1,7 @@
+/* Font Style => https://fonts.google.com/specimen/Yuji+Syuku?category=Serif,Display,Handwriting,Monospace */
 @import url('https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap');
+
+/* General Styling */
 
 :root {
   --darkgray: rgba(33,37,41);
@@ -54,12 +57,18 @@ hr{
     display:none;
 }
 
-.bold{
+.bold,
+h1,h2,h3,h4,h5{
     font-weight: bolder !important;
 }
 
 .uppercase-txt {
    text-transform: uppercase;
+}
+
+.row{
+    margin-right: 0 !important;
+    margin-left: 0 !important;
 }
 
 /* Navbar => Source / Inspiration :
@@ -101,6 +110,24 @@ nav {
 .nav-link{
     font-size:18px;
     margin: 0px 5px 0px 5px;
+}
+
+.dropdown-toggle::after{
+    display:none !important;
+}
+
+.dropdown-menu,
+.dropdown-item{
+    background-color:transparent !important;
+    border-color:transparent !important;
+}
+
+.dropdown-menu{
+    margin-top:0 !important;
+}
+
+.dropdown-item{
+    border-radius: 1rem;
 }
 
 /* Footer => Source / Inspiration : https://css-tricks.com/couple-takes-sticky-footer/ */
@@ -278,7 +305,7 @@ nav {
     color: var(--slytherin-green);
 }
 
-/* Sorting Ceremony */
+/* Sorting Ceremony & Sorting Result */
 
 #quiz-container{
     padding-left: calc(var(--bs-gutter-x) * .5) !important;
@@ -291,6 +318,10 @@ nav {
     border-radius: 0.5rem;
     background-color: rgba(255, 255, 255, 0.7);
     padding: 1rem;
+}
+
+.col-9{
+    width:100% !important;
 }
 
 .answer,
@@ -327,19 +358,126 @@ nav {
     box-shadow: 0 0 10px var(--slytherin-green), inset 0 0 10px var(--darkgray);
 }
 
-/* Sorting Result */
-
 .result-line{
     width:100%;
     border-radius: 1rem;
     padding: 0.2rem 0.5rem;
 }
 
-/* Resize */
+.small-btn{
+    width:90px !important;
+}
+
+/* Houses */
+
+#ghost-img,
+#commonroom-img,
+#traits-img,
+#founder-img {
+    width:250px;
+}
+
+#element-img{
+    width:150px;
+}
+
+/* Collapsible Sections => Source / Inspiration : https://codepen.io/markcaron/pen/RVvmaz */
+
+.collapsible-section {
+    margin-bottom: 1em;
+    max-width: 100%;
+}
+
+.collapsible-section .collapsible-section-title {
+    margin: 0;
+}
+
+.collapsible-section-title label{
+    border-radius: 1rem;
+}
+
+.collapsible-section .collapsible-section-content {
+    overflow-y: hidden;
+    height: 0;
+    transition: height 0.3s ease;
+}
+
+.collapsible-section > input[type='checkbox'] {
+    position: absolute;
+    left: -100vw;
+}
+
+.collapsible-section
+  > input[type='checkbox']:checked
+  ~ .collapsible-section-content {
+    height: auto;
+    overflow: visible;
+    padding: 10px;
+    border-top: 0;
+}
+
+.collapsible-section label {
+    display: block;
+    text-align: center;
+    font-size: 2em;
+    cursor: pointer;
+    font-weight: normal;
+    padding: 10px;
+    line-height: 1.2em;
+}
+
+.collapsible-section label:hover,
+.collapsible-section label:focus {
+    text-shadow: var(--red-shadow);
+}
+
+.collapsible-section
+  > input[type='checkbox']:checked
+  ~ .collapsible-section-title
+  label {
+    text-shadow: var(--red-shadow);
+}
+
+.collapsible-section-text {
+    flex: 75%;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+/* Handling Resize */
+
+@media screen and (max-width: 800px) {
+    #question-quiz,
+    .answer_label{
+        font-size:18px;
+        display:inline !important;
+    }
+
+    .sorting-end-icon{
+        width:90px;
+    }
+}
 
 @media screen and (max-width: 500px) {
-  .index-card{
-    width: 280px;
-  }
+    .index-card{
+        width: 250px;
+    }
 
+    .sorting-end-icon{
+        width:50px;
+        margin: 0.2rem !important;
+    }
+
+    .large-btn{
+        font-size:26px !important;
+    }
+
+    .btn-lg{
+        font-size:1rem;
+    }
+
+    .collapsible-section label{
+        font-size:1.3em !important;
+    }
 }

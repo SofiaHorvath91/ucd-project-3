@@ -4,6 +4,7 @@ from .views import (
     sorting,
     sorting_result,
     results,
+    house,
 )
 
 urlpatterns = [
@@ -11,4 +12,5 @@ urlpatterns = [
     path('sorting', sorting, name="sorting"),
     path('sorting-result/<int:id>', sorting_result, name="sorting-result"),
     path('results', results, name="results"),
+    path('house/<str:name>', house, name='house'),
 ]

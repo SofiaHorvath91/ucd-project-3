@@ -1,55 +1,72 @@
 from django.shortcuts import render, redirect
-from rest_framework.renderers import JSONRenderer
-from .models import Answer
-from .models import Question
+import csv
+import random
+from django.http import HttpResponse
 from .models import Quiz
-from .models import QuizSerializer
 from .models import Result
 from .models import House
 
 
+# HMTL Page Views
+
+
+# Home Page (home.html)
 def home(request):
+    # Collect all houses for introduction on Home page
     context = {}
     houses = House.objects.all()
     context['houses'] = houses
+
     return render(request, 'hogwarts_quiz/home.html', context=context)
 
 
+# Sorting Page (sorting.html) => Handling Sorting Quiz logic
 def sorting(request):
     context = {}
 
+    # Setting boolean values for conditional display of sections on html page
+    # (by default, quiz starter section is visible)
     context['game_start'] = True
     context['game_on'] = False
     context['game_end'] = False
 
+    # Selecting quiz from db and format quiz name for showing as site title
     quiz = Quiz.objects.filter(name='sorting_ceremony').first()
     questions_count = quiz.questions.all().count()
     context['quiz'] = quiz
     context['quiz_name'] = firstletter_uppercase(quiz.name)
 
+    # Handling click on Start Sorting button
     if 'sorting_start' in request.POST:
+        # Setting house values to zero
         context['gryffindor_count'] = 0
         context['hufflepuff_count'] = 0
         context['ravenclaw_count'] = 0
         context['slytherin_count'] = 0
 
+        # Setting boolean values to display quiz game section
         context['game_start'] = False
         context['game_on'] = True
 
+        # Select first question with related answers of quiz to start
         curr_question = quiz.questions.filter(number=1).first()
         context['current_question'] = curr_question
         context['answers'] = curr_question.answers.all()
 
         return render(request, 'hogwarts_quiz/sorting.html', context=context)
 
+    # Handling click on Next Question button
     if 'next_question' in request.POST:
+        # Setting boolean values to display quiz game section
         context['game_start'] = False
 
+        # Getting result house values so far
         gryffindor_count = check_point_empty(request.POST['count_gryffindor'])
         hufflepuff_count = check_point_empty(request.POST['count_hufflepuff'])
         ravenclaw_count = check_point_empty(request.POST['count_ravenclaw'])
         slytherin_count = check_point_empty(request.POST['count_slytherin'])
 
+        # Getting result house value of current answer and increment related house's points
         selected_answer = request.POST.get('answers_options')
         if 'gryffindor' == selected_answer:
             gryffindor_count = add_housepoint(gryffindor_count)
@@ -60,19 +77,27 @@ def sorting(request):
         else:
             slytherin_count = add_housepoint(slytherin_count)
 
+        # Setting result house values with current answer's values included
         context['gryffindor_count'] = gryffindor_count
         context['hufflepuff_count'] = hufflepuff_count
         context['ravenclaw_count'] = ravenclaw_count
         context['slytherin_count'] = slytherin_count
 
+        # Get current question index
         current_index = int(request.POST['current_index'])
+
+        # Saving result to database if current question index = last question number
         if current_index == questions_count:
+            # Get house selected by user in last question
             selected = selected_answer
+
+            # Transform result house values to percentage based on total number of questions
             gryffindor_point = int(point_to_percentage(gryffindor_count, questions_count))
             hufflepuff_point = int(point_to_percentage(hufflepuff_count, questions_count))
             ravenclaw_point = int(point_to_percentage(ravenclaw_count, questions_count))
             slytherin_point = int(point_to_percentage(slytherin_count, questions_count))
 
+            # Get maximum house percentage and select house(s) for final result
             houses_points = {
                 "gryffindor": gryffindor_point,
                 "hufflepuff": hufflepuff_point,
@@ -81,12 +106,11 @@ def sorting(request):
             }
 
             max_point = max(houses_points.values())
-
             result_house = ''
             for k, v in houses_points.items():
                 if v == max_point:
                     result_house += (k+' ')
-
+            # Create result object in database
             result = Result.objects.create(quiz=quiz.name,
                                            result=result_house.strip(),
                                            selected_house=selected,
@@ -94,22 +118,29 @@ def sorting(request):
                                            hufflepuff=hufflepuff_point,
                                            ravenclaw=ravenclaw_point,
                                            slytherin=slytherin_point)
+
+            # Get newly created result object's id for result display
+            # and set boolean values to display quiz end section
             context['result_id'] = result.id
             context['game_on'] = False
             context['game_end'] = True
 
             return render(request, 'hogwarts_quiz/sorting.html', context=context)
 
+        # If current question index != last question number, increment current question index
         index = current_index + 1
-
+        # Set boolean values to display quiz game section
         context['game_on'] = True
+        # Select next question based on incremented current index with related answers
         curr_question = quiz.questions.filter(number=index).first()
         context['current_question'] = curr_question
         context['answers'] = curr_question.answers.all()
 
         return render(request, 'hogwarts_quiz/sorting.html', context=context)
 
+    # Handling click on See My House button
     if 'end_quiz' in request.POST:
+        # Passing current game's result's ID to sorting result display page
         id = request.POST['result_id']
         return redirect('sorting-result', id=id)
 
@@ -118,33 +149,150 @@ def sorting(request):
 
 def sorting_result(request, id):
     context = {}
-
+    # Select result with related id from database
     result_house = Result.objects.filter(id=id).first()
     context['result'] = result_house
+    # Format Page title and house result title
     context['quiz'] = firstletter_uppercase(result_house.quiz)
     context['title'] = firstletter_uppercase(result_house.result)
+    # Get result houses based on result
     context['houses'] = get_result_house(result_house.result)
+    # Get other houses based on result
     context['other_houses'] = get_other_house(result_house.result)
+
+    # Handle user satisfaction input and conditional display of satisfaction-related sections on html page
+    context['satisfaction_done'] = False
+
+    # If satisfaction input already provided
+    if result_house.satisfaction is not None:
+        context['satisfaction_done'] = True
+        # If satisfaction input already provided & positive input received
+        if result_house.satisfaction == 'yes':
+            context['satisfied'] = True
+            context['satisfaction_comment'] = \
+                'So glad that you are satisfied with your house! Wander around and discover!'
+        else:
+            # If satisfaction input already provided & negative input received
+            context['satisfied'] = False
+            context['satisfaction_comment'] = \
+                'Sorry you are not satisfied - you may try again and think again your answers!'
+
+    # Handle user click on Yes button (satisfied)
+    # => Alter result to update 'satisfaction' field, handle conditional dispay and set user satisfaction input comment
+    if 'satisfied_btn' in request.POST:
+        result_house.satisfaction = "yes"
+        result_house.save()
+        context['satisfaction_done'] = True
+        context['satisfied'] = True
+        context['satisfaction_comment'] = \
+            'So glad that you are satisfied with your house! Wander around and discover!'
+        return render(request, 'hogwarts_quiz/sorting-result.html', context=context)
+
+    # Handle user click on No button (not satisfied)
+    # => Alter result to update 'satisfaction' field, handle conditional dispay and set user satisfaction input comment
+    if 'not_satisfied_btn' in request.POST:
+        result_house.satisfaction = "no"
+        result_house.save()
+        context['satisfaction_done'] = True
+        context['satisfied'] = False
+        context['satisfaction_comment'] = \
+            'Sorry you are not satisfied - you may try again and think again your answers!'
+        return render(request, 'hogwarts_quiz/sorting-result.html', context=context)
+
+    # Handle user click on Save My Result button => Export current result to csv file via http response
+    if 'save_result' in request.POST:
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="my_result.csv"'
+
+        writer = csv.writer(response)
+        writer.writerow(['quiz',
+                         'result',
+                         'selected house',
+                         'gryffindor',
+                         'hufflepuff',
+                         'ravenclaw',
+                         'slytherin',
+                         'satisfaction'])
+
+        writer.writerow([result_house.quiz,
+                         result_house.result,
+                         result_house.selected_house,
+                         result_house.gryffindor,
+                         result_house.hufflepuff,
+                         result_house.ravenclaw,
+                         result_house.slytherin,
+                         result_house.satisfaction])
+        return response
 
     return render(request, 'hogwarts_quiz/sorting-result.html', context=context)
 
 
 def results(request):
     context = {}
+    # Collect all houses for displaying results
     houses = House.objects.all()
-
-    for h in houses:
-        h.students = get_all_results(h.name)[0]
-        h.selected = get_all_results(h.name)[1]
-        h.gryffindor = get_all_results(h.name)[2]
-        h.hufflepuff = get_all_results(h.name)[3]
-        h.ravenclaw = get_all_results(h.name)[4]
-        h.slytherin = get_all_results(h.name)[5]
-        h.save()
-
+    # Update house statistics based on latest results
+    update_statistics(houses, len(houses))
     context['houses'] = houses
 
+    # Handle click on Save All Results button => Export current displayed results to csv file via http response
+    if 'save_results' in request.POST:
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="all_result.csv"'
+
+        writer = csv.writer(response)
+        writer.writerow(['name',
+                         'students',
+                         'selected in house',
+                         'selected by others',
+                         'satisfaction rate',
+                         'gryffindor rate',
+                         'hufflepuff rate',
+                         'ravenclaw rate',
+                         'slytherin rate'])
+
+        for h in houses:
+            writer.writerow([h.name,
+                             h.students,
+                             h.selected,
+                             h.selected_others,
+                             h.satisfaction_rate,
+                             h.gryffindor,
+                             h.hufflepuff,
+                             h.ravenclaw,
+                             h.slytherin])
+        return response
+
     return render(request, 'hogwarts_quiz/results.html', context=context)
+
+
+def house(request, name):
+    context = {}
+    # Select first house from database based on house name
+    current_house = House.objects.filter(name=name).first()
+    # Update house statistics based on latest results
+    update_statistics(current_house, 1)
+    context['house'] = current_house
+
+    # Open 'quotes.txt' file and read in lines (quotes from it)
+    f = open('static/txt/quotes.txt', 'r')
+    lines = f.readlines()
+    f.close()
+    # Select quotes for selected house based on house name (included in quote line in txt file)
+    house_quotes = []
+    for line in lines:
+        if current_house.name in line:
+            house_quotes.append(line)
+    # Set up a random number selection for the range of selected quotes' array
+    quoteNum = random.randint(0, (len(house_quotes)-1))
+    # Select a quote from selected quotes' array based on the randomly selected index
+    context['quote'] = house_quotes[quoteNum].split('_')[1]
+    context['quote_author'] = house_quotes[quoteNum].split('_')[2]
+
+    return render(request, 'hogwarts_quiz/house.html', context=context)
+
+
+# Helper functions
 
 
 def firstletter_uppercase(name):
@@ -170,7 +318,7 @@ def firstletter_uppercase(name):
     else:
         firstchar = name[0].upper()
         wo_firstchar = name[1:]
-        final_name += firstchar + wo_firstchar
+        final_name += 'House ' + firstchar + wo_firstchar
         return final_name.strip()
 
 
@@ -215,11 +363,44 @@ def get_other_house(result_house):
     return other_houses
 
 
+def update_statistics(houses, count):
+    if count > 1:
+        for h in houses:
+            results_statistics = get_all_results(h.name)
+
+            h.students = results_statistics[0]
+            h.selected = results_statistics[1]
+            h.selected_others = results_statistics[2]
+            h.satisfaction_rate = results_statistics[3]
+            h.gryffindor = results_statistics[4]
+            h.hufflepuff = results_statistics[5]
+            h.ravenclaw = results_statistics[6]
+            h.slytherin = results_statistics[7]
+            h.save()
+    else:
+        results_statistics = get_all_results(houses.name)
+
+        houses.students = results_statistics[0]
+        houses.selected = results_statistics[1]
+        houses.selected_others = results_statistics[2]
+        houses.satisfaction_rate = results_statistics[3]
+        houses.gryffindor = results_statistics[4]
+        houses.hufflepuff = results_statistics[5]
+        houses.ravenclaw = results_statistics[6]
+        houses.slytherin = results_statistics[7]
+        houses.save()
+
+
 def get_all_results(house):
     all_results = Result.objects.all()
 
     count = 0
+    others_count = 0
     selected = 0
+    selected_others = 0
+    not_satisfied = 0
+    satisfied = 0
+    satisfaction = 0
     gryffindor_result = 0
     hufflepuff_result = 0
     ravenclaw_result = 0
@@ -236,10 +417,34 @@ def get_all_results(house):
             if r.selected_house in r.result:
                 selected += 1
 
+            if 'yes' == r.satisfaction:
+                satisfied += 1
+
+            if 'no' == r.satisfaction:
+                not_satisfied += 1
+        else:
+            others_count += 1
+            if house in r.selected_house:
+                selected_others += 1
+
     if count > 0:
         selected = int(point_to_percentage(selected, count))
 
-    counts = [count, selected, gryffindor_result, hufflepuff_result, ravenclaw_result, slytherin_result]
+    if (satisfied+not_satisfied) > 0:
+        satisfaction = int(point_to_percentage(satisfied, (satisfied+not_satisfied)))
+
+    if others_count > 0:
+        selected_others = int(point_to_percentage(selected_others, others_count))
+
+    counts = [count,
+              selected,
+              selected_others,
+              satisfaction,
+              gryffindor_result,
+              hufflepuff_result,
+              ravenclaw_result,
+              slytherin_result]
+
     return counts
 
 

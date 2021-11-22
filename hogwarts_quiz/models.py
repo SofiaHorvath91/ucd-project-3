@@ -55,6 +55,7 @@ class Result(models.Model):
     slytherin = models.IntegerField(blank=True, null=True)
     selected_house = models.TextField(max_length=50, blank=True, null=True)
     result = models.CharField(max_length=600, blank=True, null=True)
+    satisfaction = models.CharField(max_length=600, blank=True, null=True)
 
 
 class House(models.Model):
@@ -69,6 +70,8 @@ class House(models.Model):
     ghost = models.TextField(max_length=1000, blank=True, null=True)
     students = models.IntegerField(blank=True, null=True)
     selected = models.IntegerField(blank=True, null=True)
+    selected_others = models.IntegerField(blank=True, null=True)
+    satisfaction_rate = models.IntegerField(blank=True, null=True)
     gryffindor = models.IntegerField(blank=True, null=True)
     hufflepuff = models.IntegerField(blank=True, null=True)
     ravenclaw = models.IntegerField(blank=True, null=True)

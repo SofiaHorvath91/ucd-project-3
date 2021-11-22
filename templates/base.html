@@ -37,6 +37,20 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'results' %}">Results</a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">Houses</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item gryffindor-btn bold"
+                                   href="{% url 'house' name='gryffindor' %}">Gryffindor</a></li>
+                            <li><a class="dropdown-item hufflepuff-btn bold mt-1"
+                                   href="{% url 'house' name='hufflepuff' %}">Hufflepuff</a></li>
+                            <li><a class="dropdown-item ravenclaw-btn bold mt-1"
+                                   href="{% url 'house' name='ravenclaw' %}">Ravenclaw</a></li>
+                            <li><a class="dropdown-item slytherin-btn bold mt-1"
+                                   href="{% url 'house' name='slytherin' %}">Slytherin</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </nav>
