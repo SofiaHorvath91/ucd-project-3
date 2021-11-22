@@ -17,7 +17,9 @@ def home(request):
     houses = House.objects.all()
     context['houses'] = houses
 
-    return render(request, 'hogwarts_quiz/home.html', context=context)
+    return render(request,
+                  'hogwarts_quiz/home.html',
+                  context=context)
 
 
 # Sorting Page (sorting.html) => Handling Sorting Quiz logic
@@ -53,7 +55,9 @@ def sorting(request):
         context['current_question'] = curr_question
         context['answers'] = curr_question.answers.all()
 
-        return render(request, 'hogwarts_quiz/sorting.html', context=context)
+        return render(request,
+                      'hogwarts_quiz/sorting.html',
+                      context=context)
 
     # Handling click on Next Question button
     if 'next_question' in request.POST:
@@ -66,7 +70,8 @@ def sorting(request):
         ravenclaw_count = check_point_empty(request.POST['count_ravenclaw'])
         slytherin_count = check_point_empty(request.POST['count_slytherin'])
 
-        # Getting result house value of current answer and increment related house's points
+        # Getting result house value of current answer
+        # and increment related house's points
         selected_answer = request.POST.get('answers_options')
         if 'gryffindor' == selected_answer:
             gryffindor_count = add_housepoint(gryffindor_count)
@@ -85,17 +90,22 @@ def sorting(request):
 
         # Get current question index
         current_index = int(request.POST['current_index'])
-
-        # Saving result to database if current question index = last question number
+        # Saving result to database
+        # if current question index = last question number
         if current_index == questions_count:
             # Get house selected by user in last question
             selected = selected_answer
 
-            # Transform result house values to percentage based on total number of questions
-            gryffindor_point = int(point_to_percentage(gryffindor_count, questions_count))
-            hufflepuff_point = int(point_to_percentage(hufflepuff_count, questions_count))
-            ravenclaw_point = int(point_to_percentage(ravenclaw_count, questions_count))
-            slytherin_point = int(point_to_percentage(slytherin_count, questions_count))
+            # Transform result house values
+            # to percentage based on total number of questions
+            gryffindor_point = int(point_to_percentage(gryffindor_count,
+                                                       questions_count))
+            hufflepuff_point = int(point_to_percentage(hufflepuff_count,
+                                                       questions_count))
+            ravenclaw_point = int(point_to_percentage(ravenclaw_count,
+                                                      questions_count))
+            slytherin_point = int(point_to_percentage(slytherin_count,
+                                                      questions_count))
 
             # Get maximum house percentage and select house(s) for final result
             houses_points = {
@@ -125,18 +135,24 @@ def sorting(request):
             context['game_on'] = False
             context['game_end'] = True
 
-            return render(request, 'hogwarts_quiz/sorting.html', context=context)
+            return render(request,
+                          'hogwarts_quiz/sorting.html',
+                          context=context)
 
-        # If current question index != last question number, increment current question index
+        # If current question index
+        # != last question number, increment current question index
         index = current_index + 1
         # Set boolean values to display quiz game section
         context['game_on'] = True
-        # Select next question based on incremented current index with related answers
+        # Select next question based
+        # on incremented current index with related answers
         curr_question = quiz.questions.filter(number=index).first()
         context['current_question'] = curr_question
         context['answers'] = curr_question.answers.all()
 
-        return render(request, 'hogwarts_quiz/sorting.html', context=context)
+        return render(request,
+                      'hogwarts_quiz/sorting.html',
+                      context=context)
 
     # Handling click on See My House button
     if 'end_quiz' in request.POST:
@@ -144,7 +160,9 @@ def sorting(request):
         id = request.POST['result_id']
         return redirect('sorting-result', id=id)
 
-    return render(request, 'hogwarts_quiz/sorting.html', context=context)
+    return render(request,
+                  'hogwarts_quiz/sorting.html',
+                  context=context)
 
 
 def sorting_result(request, id):
@@ -160,7 +178,8 @@ def sorting_result(request, id):
     # Get other houses based on result
     context['other_houses'] = get_other_house(result_house.result)
 
-    # Handle user satisfaction input and conditional display of satisfaction-related sections on html page
+    # Handle user satisfaction input
+    # and conditional display of satisfaction-related sections on html page
     context['satisfaction_done'] = False
 
     # If satisfaction input already provided
@@ -170,39 +189,51 @@ def sorting_result(request, id):
         if result_house.satisfaction == 'yes':
             context['satisfied'] = True
             context['satisfaction_comment'] = \
-                'So glad that you are satisfied with your house! Wander around and discover!'
+                'So glad that you are satisfied with your house! ' \
+                'Wander around and discover!'
         else:
             # If satisfaction input already provided & negative input received
             context['satisfied'] = False
             context['satisfaction_comment'] = \
-                'Sorry you are not satisfied - you may try again and think again your answers!'
+                'Sorry you are not satisfied ' \
+                '- you may try again and think again your answers!'
 
     # Handle user click on Yes button (satisfied)
-    # => Alter result to update 'satisfaction' field, handle conditional dispay and set user satisfaction input comment
+    # => Alter result to update 'satisfaction' field,
+    #    handle conditional display and set user satisfaction input comment
     if 'satisfied_btn' in request.POST:
         result_house.satisfaction = "yes"
         result_house.save()
         context['satisfaction_done'] = True
         context['satisfied'] = True
         context['satisfaction_comment'] = \
-            'So glad that you are satisfied with your house! Wander around and discover!'
-        return render(request, 'hogwarts_quiz/sorting-result.html', context=context)
+            'So glad that you are satisfied with your house! ' \
+            'Wander around and discover!'
+        return render(request,
+                      'hogwarts_quiz/sorting-result.html',
+                      context=context)
 
     # Handle user click on No button (not satisfied)
-    # => Alter result to update 'satisfaction' field, handle conditional dispay and set user satisfaction input comment
+    # => Alter result to update 'satisfaction' field,
+    #    handle conditional display and set user satisfaction input comment
     if 'not_satisfied_btn' in request.POST:
         result_house.satisfaction = "no"
         result_house.save()
         context['satisfaction_done'] = True
         context['satisfied'] = False
         context['satisfaction_comment'] = \
-            'Sorry you are not satisfied - you may try again and think again your answers!'
-        return render(request, 'hogwarts_quiz/sorting-result.html', context=context)
+            'Sorry you are not satisfied ' \
+            '- you may try again and think again your answers!'
+        return render(request,
+                      'hogwarts_quiz/sorting-result.html',
+                      context=context)
 
-    # Handle user click on Save My Result button => Export current result to csv file via http response
+    # Handle user click on Save My Result button
+    # => Export current result to csv file via http response
     if 'save_result' in request.POST:
         response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="my_result.csv"'
+        response['Content-Disposition'] = \
+            'attachment; filename="my_result.csv"'
 
         writer = csv.writer(response)
         writer.writerow(['quiz',
@@ -224,7 +255,9 @@ def sorting_result(request, id):
                          result_house.satisfaction])
         return response
 
-    return render(request, 'hogwarts_quiz/sorting-result.html', context=context)
+    return render(request,
+                  'hogwarts_quiz/sorting-result.html',
+                  context=context)
 
 
 def results(request):
@@ -235,10 +268,12 @@ def results(request):
     update_statistics(houses, len(houses))
     context['houses'] = houses
 
-    # Handle click on Save All Results button => Export current displayed results to csv file via http response
+    # Handle click on Save All Results button
+    # => Export current displayed results to csv file via http response
     if 'save_results' in request.POST:
         response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="all_result.csv"'
+        response['Content-Disposition'] = \
+            'attachment; filename="all_result.csv"'
 
         writer = csv.writer(response)
         writer.writerow(['name',
@@ -263,7 +298,9 @@ def results(request):
                              h.slytherin])
         return response
 
-    return render(request, 'hogwarts_quiz/results.html', context=context)
+    return render(request,
+                  'hogwarts_quiz/results.html',
+                  context=context)
 
 
 def house(request, name):
@@ -278,18 +315,20 @@ def house(request, name):
     f = open('static/txt/quotes.txt', 'r')
     lines = f.readlines()
     f.close()
-    # Select quotes for selected house based on house name (included in quote line in txt file)
+    # Sort quotes in array for selected house based on house name
     house_quotes = []
     for line in lines:
         if current_house.name in line:
             house_quotes.append(line)
     # Set up a random number selection for the range of selected quotes' array
-    quoteNum = random.randint(0, (len(house_quotes)-1))
-    # Select a quote from selected quotes' array based on the randomly selected index
-    context['quote'] = house_quotes[quoteNum].split('_')[1]
-    context['quote_author'] = house_quotes[quoteNum].split('_')[2]
+    quote_num = random.randint(0, (len(house_quotes)-1))
+    # Select a quote from quotes' array based on randomly selected index
+    context['quote'] = house_quotes[quote_num].split('_')[1]
+    context['quote_author'] = house_quotes[quote_num].split('_')[2]
 
-    return render(request, 'hogwarts_quiz/house.html', context=context)
+    return render(request,
+                  'hogwarts_quiz/house.html',
+                  context=context)
 
 
 # Helper functions
@@ -344,7 +383,8 @@ def check_point_empty(point):
 
 
 # Convert result points to percentage
-# => Used in page view sorting + helper function get_all_results (used for results / house page views)
+# => Used in page view sorting
+# + helper function get_all_results (used for results / house page views)
 def point_to_percentage(point, total):
     number = int(point) / total * 100
     return round(number, 0)
@@ -438,7 +478,7 @@ def get_all_results(house):
             ravenclaw_result += r.ravenclaw
             slytherin_result += r.slytherin
 
-            # If current house is selected by user and got sorted in it
+            # If current house selected by user and got sorted in it
             if r.selected_house in r.result:
                 selected += 1
             # If user is satisfied with sorting result
@@ -450,7 +490,7 @@ def get_all_results(house):
         else:
             # If given house is not in the result
             others_count += 1
-            # # If the given house is selected by user and did not got sorted in it
+            # # If the given house selected by user bot not sorted in it
             if house in r.selected_house:
                 selected_others += 1
 
@@ -464,10 +504,12 @@ def get_all_results(house):
         slytherin_result = round(slytherin_result / count)
 
     if others_count > 0:
-        selected_others = int(point_to_percentage(selected_others, others_count))
+        selected_others = int(point_to_percentage(selected_others,
+                                                  others_count))
 
     if (satisfied+not_satisfied) > 0:
-        satisfaction = int(point_to_percentage(satisfied, (satisfied+not_satisfied)))
+        satisfaction = int(point_to_percentage(satisfied,
+                                               (satisfied+not_satisfied)))
 
     # Passing new percentage values as array to function update_statistics
     counts = [count,
@@ -480,6 +522,3 @@ def get_all_results(house):
               slytherin_result]
 
     return counts
-
-
-
