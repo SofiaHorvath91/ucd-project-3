@@ -295,9 +295,12 @@ def house(request, name):
 # Helper functions
 
 
+# Turn first letter to upper case for quiz name / result house(s)
+# => Used in page views sorting / sorting_result
 def firstletter_uppercase(name):
     final_name = ''
     if '_' in name:
+        # Transform quiz name (sorting_ceremony)
         name_array = name.split('_')
         for word in name_array:
             firstchar = word[0].upper()
@@ -305,6 +308,7 @@ def firstletter_uppercase(name):
             final_name += firstchar + wo_firstchar + ' '
         return final_name.strip()
     elif ' ' in name:
+        # Transform multiple house results to result title
         final_name += 'Houses '
         result_houses = name.split(' ')
         for h in result_houses:
@@ -316,28 +320,38 @@ def firstletter_uppercase(name):
                 final_name += firstchar + wo_firstchar + ' & '
         return final_name.strip()
     else:
+        # Transform single house result to result title
         firstchar = name[0].upper()
         wo_firstchar = name[1:]
         final_name += 'House ' + firstchar + wo_firstchar
         return final_name.strip()
 
 
+# Increment house point with one
+# => Used in page view sorting
 def add_housepoint(count):
     return int(count) + 1
 
 
+# Convert request.post result to number
+# => Used in page view sorting
 def check_point_empty(point):
+    # If request.post number value is null, return 0, else converted number
     if point == '':
         return 0
     else:
         return int(point)
 
 
+# Convert result points to percentage
+# => Used in page view sorting + helper function get_all_results (used for results / house page views)
 def point_to_percentage(point, total):
     number = int(point) / total * 100
     return round(number, 0)
 
 
+# Return array of result houses based on result string
+# => Used in page view sorting_result
 def get_result_house(result_house):
     houses = []
     houses_string = result_house.strip()
@@ -353,6 +367,8 @@ def get_result_house(result_house):
     return houses
 
 
+# Return array of other than result houses based on result string
+# => Used in page view sorting_result
 def get_other_house(result_house):
     houses = House.objects.all()
     other_houses = []
@@ -363,8 +379,11 @@ def get_other_house(result_house):
     return other_houses
 
 
+# Updating one house's / all houses' statistics based on actual database values
+# => Used in page views house and results
 def update_statistics(houses, count):
     if count > 1:
+        # If input consists of more houses (page view results)
         for h in houses:
             results_statistics = get_all_results(h.name)
 
@@ -378,6 +397,7 @@ def update_statistics(houses, count):
             h.slytherin = results_statistics[7]
             h.save()
     else:
+        # If input consists of only one house (page view house)
         results_statistics = get_all_results(houses.name)
 
         houses.students = results_statistics[0]
@@ -391,9 +411,9 @@ def update_statistics(houses, count):
         houses.save()
 
 
+# Helper function for above update_statistics function based on given house
 def get_all_results(house):
-    all_results = Result.objects.all()
-
+    # Initialize numeric house values
     count = 0
     others_count = 0
     selected = 0
@@ -406,36 +426,50 @@ def get_all_results(house):
     ravenclaw_result = 0
     slytherin_result = 0
 
+    # Loop through all results in database
+    all_results = Result.objects.all()
     for r in all_results:
         if house in r.result:
+            # If given house is in the result
             count += 1
+            # Collect sub-houses percentage values
             gryffindor_result += r.gryffindor
             hufflepuff_result += r.hufflepuff
             ravenclaw_result += r.ravenclaw
             slytherin_result += r.slytherin
 
+            # If current house is selected by user and got sorted in it
             if r.selected_house in r.result:
                 selected += 1
-
+            # If user is satisfied with sorting result
             if 'yes' == r.satisfaction:
                 satisfied += 1
-
+            # If user is not satisfied with sorting result
             if 'no' == r.satisfaction:
                 not_satisfied += 1
         else:
+            # If given house is not in the result
             others_count += 1
+            # # If the given house is selected by user and did not got sorted in it
             if house in r.selected_house:
                 selected_others += 1
 
+    # Turn numeric house values to result percentages
+    # => As division by zero throws error, divisor check before execution
     if count > 0:
         selected = int(point_to_percentage(selected, count))
-
-    if (satisfied+not_satisfied) > 0:
-        satisfaction = int(point_to_percentage(satisfied, (satisfied+not_satisfied)))
+        gryffindor_result = round(gryffindor_result / count)
+        hufflepuff_result = round(hufflepuff_result / count)
+        ravenclaw_result = round(ravenclaw_result / count)
+        slytherin_result = round(slytherin_result / count)
 
     if others_count > 0:
         selected_others = int(point_to_percentage(selected_others, others_count))
 
+    if (satisfied+not_satisfied) > 0:
+        satisfaction = int(point_to_percentage(satisfied, (satisfied+not_satisfied)))
+
+    # Passing new percentage values as array to function update_statistics
     counts = [count,
               selected,
               selected_others,

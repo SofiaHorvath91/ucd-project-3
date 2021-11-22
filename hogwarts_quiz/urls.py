@@ -1,3 +1,4 @@
+# Associating page views to url paths
 from django.urls import path
 from .views import (
     home,
