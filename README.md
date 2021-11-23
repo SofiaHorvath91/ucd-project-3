@@ -13,7 +13,7 @@ Technologies : Python with [Django](https://www.djangoproject.com/) + HTML + CSS
 Software : [PyCharm](https://www.jetbrains.com/pycharm/)
 
 The app logic which handles user input and outputs given response is written in Python programming language. \
-Django framework is used to connect app objects (models) to Python code (views), and the app logic (views) to styled HTMl pages (templates) in order to be able to present the project as web application. \
+Django framework is used to connect app objects (models) to Python code (views), and the app logic (views) to styled HTML pages (templates) in order to be able to present the project as real, quality web application. \
 Django also handles database where the respective records of app objects are stored and then retrieved from for calculations.
 
 ## UX
@@ -163,7 +163,7 @@ Tested with Samsung A5, Galaxy Fold, iPhone 5, and iPad, and webpage works well,
 * Mozilla Developer Tools\
 Tested for available devices, webpage works well, responsive as intended, no style deformations and no error messages in Pycharm debug tool.
 ### 3. Accessibility tests
-The entire website was verified about accessibility using [Wave](https://wave.webaim.org/). Only few stylistic errors found (low contrast errors for color), alerts related to heading elements hierarchy.
+The entire website was verified about accessibility using [Wave](https://wave.webaim.org/). Only few stylistic errors found (low contrast errors for chosen colors), alerts related to heading elements hierarchy.
 * [Home Page Wave Result](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-home.PNG) | [Home Page Wave Errors](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-home-errors.PNG)
 * [Sorting Ceremony Page Wave Result](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-sorting.PNG) (No errors)
 * [Sorting Result Page Wave Result](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-sorting-result.PNG) | [Sorting Result Page Wave Errors](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-sorting-result-errors.PNG)
@@ -226,4 +226,4 @@ Pictures were treated with [Photoshop](http://www.apsportable.com/photoshop-cs6-
 ### 5. Special Thanks
 * My mentor Rahul Lakhanpal for his time, kind words and support.
 * My previous private mentor Samu Gábor Tamás who taught me all I know in the last two years
-* My Mother who is always there for me and who bought me the first Harry Potter book a long time ago for Christmas
+* My Mother who is always there for me and who bought me the first Harry Potter book long time ago for Christmas

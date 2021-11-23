@@ -58,7 +58,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
-
 # Database (Connected to Heroku / Postgres)
 
 DATABASES = {
@@ -66,8 +65,6 @@ DATABASES = {
         'ENGINE': 'django.db.postgresql_psycopg2',
     }
 }
-
-DATABASES['default'] = dj_database_url.config(default='postgres://byjnvxbntrptlt:d44ca611f6f34f423335897f563b6b800ee5a022314717b91be270f9baad642c@ec2-54-160-103-135.compute-1.amazonaws.com:5432/dqpqt1p9nsssc')
 
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
