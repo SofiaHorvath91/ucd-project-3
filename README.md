@@ -134,3 +134,55 @@ Footer\
 * Setup of analysis per question
 * Extend user feedback collection part
 * Include sub-quiz based on sorting result to discover which specific house traits are the strongest among students
+## Code validation
+### 1. Automated tests
+* HTML\
+Passing the HTML of all pages through the [W3C Markup Validator](https://validator.w3.org/) and errors are only related to special format of input calculated by Python logic and passed to html page via Django.
+  * [Home Page Validation](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/w3validator-html-home.pdf)
+  * [Sorting Ceremony Page Validation](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/w3validator-html-sorting.pdf)
+  * [Sorting Result Page Validation](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/w3validator-html-sorting-result.pdf)
+  * [Results Page Validation](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/w3validator-html-results.pdf)
+  * [House Validation](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/w3validator-html-house.pdf)
+* CSS\
+Passing the global CSS file through the [W3C Jigsaw Validator](https://jigsaw.w3.org/css-validator/) and no errors have been found.\
+Warnings are coming from dynamic CSS variables and imported style sheets which are out of scope of validator. Also warning appears concerning -webkit/-moz effects, as these elements are out of scope for validator.
+  * [CSS Style Validation](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/w3validator-css-style.pdf)
+* Python Code\
+Passing the python logic file (hogwarts_quiz/views.py) through the [PEP8 Validator](http://pep8online.com/) and no errors have been found.\
+  * [PEP8 Validation - Image](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/pep8-validation.PNG)
+  * [PEP8 Validation - Text file](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/pep8-result_20211122_224907.txt)
+### 2. Manual tests
+* Desktop\
+Mozilla Firefox, Google Chrome, Microsoft Edge: pages are working fine and have the corresponding style.
+* Mobile\
+Tested with Samsung A5, Galaxy Fold, iPhone 5, and iPad, and webpage works well, responsive as intended and no style deformations.
+* Mozilla Developer Tools\
+Tested for available devices, webpage works well, responsive as intended, no style deformations and no error messages in Pycharm debug tool.
+### 3. Accessibility tests
+The entire website was verified about accessibility using [Wave](https://wave.webaim.org/). Only few stylistic errors found (low contrast errors for color), alerts related to heading elements hierarchy.
+* [Home Page Wave Result](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-home.PNG) | [Home Page Wave Errors](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-home-errors.PNG)
+* [Sorting Ceremony Page Wave Result](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-sorting.PNG) (No errors)
+* [Sorting Result Page Wave Result](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-sorting-result.PNG) | [Sorting Result Page Wave Alerts](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-sorting-result-errors.PNG)
+* [Results Page Wave Result](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-results.PNG) | [Results Page Wave Alerts](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-results-errors.PNG)
+* [House Page Wave Result](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-house.PNG) | [House Page Wave Alerts](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-house-errors.PNG)
+### 4. Bugs and Solution
+While building the application, I often encountered with zero value error while communicating between html page and python logic via Django, so each time an input is received directly / indirectly from user via UI, I set up validations for zero values in Python logic. I also wished to implement a more detailed feedback form, but due to little time, I had to find a workaround to still collect user feedback, thus I extended Result object to store the satisfaction value.
+## Deployment
+The site was deployed to Heroku (find it [here](https://cryptic-citadel-55296.herokuapp.com/)) while building it with [PyCharm](https://www.jetbrains.com/pycharm/) and pushing it to GitHub Repository and Heroku via [Git Bash](https://git-scm.com/downloads).
+1.	GitHub repository => Settings => GitHub Pages
+2.	Source => Selecting Branch + Folder (main/docs)
+3.	With branch/folder selected, the page refreshes to show deployment status
+### 1. Forking Repository
+By forking the GitHub Repository, the user can copy the original repository in his/her own GitHub account, allowing the user to view and/or make changes without affecting the original repository.
+1.	Open GitHub => GitHub Repository
+2.	Top of Repository => Fork option
+3.	Copy of the original repository appears in your GitHub account
+### 2. Local Clone
+1.	Open GitHub => GitHub Repository
+2.	Under Repository name => Clone or download option
+3.	Clone Repository using HTTPS => Clone with HTTPS => Copy URL
+4.	Open Git Bash
+5.	Current working directory => Choose location where you want the directory to be cloned
+6.	Type git clone, and then paste the URL copied in Step 3.\
+$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+7.	Press Enter
