@@ -8,7 +8,7 @@ If you are ready, meet the most magical Hat of all, participate in the Sorting C
 
 ![Responsive Layouts](/static/readme/responsive-design.PNG)
 
-Deployed app (Heroku) : https://cryptic-citadel-55296.herokuapp.com/ \
+Deployed app on [Heroku](https://heroku.com) : https://cryptic-citadel-55296.herokuapp.com/ \
 Technologies : Python + Django + HTML + CSS \
 Software : [PyCharm](https://www.jetbrains.com/pycharm/)
 
@@ -162,16 +162,13 @@ Tested for available devices, webpage works well, responsive as intended, no sty
 The entire website was verified about accessibility using [Wave](https://wave.webaim.org/). Only few stylistic errors found (low contrast errors for color), alerts related to heading elements hierarchy.
 * [Home Page Wave Result](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-home.PNG) | [Home Page Wave Errors](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-home-errors.PNG)
 * [Sorting Ceremony Page Wave Result](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-sorting.PNG) (No errors)
-* [Sorting Result Page Wave Result](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-sorting-result.PNG) | [Sorting Result Page Wave Alerts](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-sorting-result-errors.PNG)
-* [Results Page Wave Result](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-results.PNG) | [Results Page Wave Alerts](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-results-errors.PNG)
-* [House Page Wave Result](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-house.PNG) | [House Page Wave Alerts](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-house-errors.PNG)
+* [Sorting Result Page Wave Result](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-sorting-result.PNG) | [Sorting Result Page Wave Errors](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-sorting-result-errors.PNG)
+* [Results Page Wave Result](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-results.PNG) | [Results Page Wave Errors](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-results-errors.PNG)
+* [House Page Wave Result](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-house.PNG) | [House Page Wave Errors](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/wave-house-errors.PNG)
 ### 4. Bugs and Solution
 While building the application, I often encountered with zero value error while communicating between html page and python logic via Django, so each time an input is received directly / indirectly from user via UI, I set up validations for zero values in Python logic. I also wished to implement a more detailed feedback form, but due to little time, I had to find a workaround to still collect user feedback, thus I extended Result object to store the satisfaction value.
 ## Deployment
-The site was deployed to Heroku (find it [here](https://cryptic-citadel-55296.herokuapp.com/)) while building it with [PyCharm](https://www.jetbrains.com/pycharm/) and pushing it to GitHub Repository and Heroku via [Git Bash](https://git-scm.com/downloads).
-1.	GitHub repository => Settings => GitHub Pages
-2.	Source => Selecting Branch + Folder (main/docs)
-3.	With branch/folder selected, the page refreshes to show deployment status
+The site was deployed to [Heroku](https://heroku.com) (find it [here](https://cryptic-citadel-55296.herokuapp.com/)) while building it with [PyCharm](https://www.jetbrains.com/pycharm/) and pushing it to GitHub Repository and Heroku via [Git Bash](https://git-scm.com/downloads).
 ### 1. Forking Repository
 By forking the GitHub Repository, the user can copy the original repository in his/her own GitHub account, allowing the user to view and/or make changes without affecting the original repository.
 1.	Open GitHub => GitHub Repository
