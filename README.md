@@ -1,9 +1,9 @@
 # Hogwarts Sorting App (UCD Project 3)
 Get sorted & let the magic begin!
 
-Ready to enter the Wizarding World and start your journey in Hogwarts School of Witchcraft and Wizardry?
-There are four Houses in Hogwarts to host students with different personalities, founded by the four greatest witches and wizards of their time who built Hogwarts a thousand years ago. Students are sorted in their house by the Sorting Hat, the magical and sentient piece of headwear, which can see the hearth and mind of a person.
-In the Hogwarts Sorting App, you have the possibility to discover all the four houses with the latest student numbers, see the popularity of the houses among students and get sorted in one or more of them in frame of the Sorting Ceremony by answering honestly the questions of the Sorting Hat.
+Ready to enter the Wizarding World and start your journey in Hogwarts School of Witchcraft and Wizardry? \
+There are four Houses in Hogwarts to host students with different personalities, founded by the four greatest witches and wizards of their time who built Hogwarts a thousand years ago. Students are sorted in their house by the Sorting Hat, the magical and sentient piece of headwear, which can see the hearth and mind of a person. \
+In the Hogwarts Sorting App, you have the possibility to discover all the four houses with the latest student numbers, see the popularity of the houses among students and get sorted in one or more of them in frame of the Sorting Ceremony by answering honestly the questions of the Sorting Hat. \
 If you are ready, meet the most magical Hat of all, participate in the Sorting Ceremony and find your own Hogwarts House!
 
 ![Responsive Layouts](/static/readme/responsive-design.PNG)
@@ -58,7 +58,7 @@ The very basic skeleton of the site was modelled by Wireframes via Balsamiq, and
 * [House Page Wireframe](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/balsamiq-house.png)
 ### 6. Style
 * Design & Colours
-  * When planning the project, I wanted the four primary colors of the four houses (red/yellow/blue/green) to dominate on the site in order to emphasize house-related statistics and details. Therefore as a basic, I chose a simple black-white design along with a greyish, minimalist background of Hogwarts castle, and for the house-specific elements, I combined standard Bootstrap color values to represent houses' primary/secondary colors and to fit well with Bootstrap-styled buttons : 
+  * When planning the project, I wanted the four primary colors of the four houses (red/yellow/blue/green) to dominate on the site in order to emphasize house-related statistics and details. Therefore as a basic, I chose a simple black-white design along with a greyish, minimalist background of Hogwarts castle, and for the house-specific elements, I combined standard Bootstrap color values to represent houses' primary/secondary colors and to fit well with Bootstrap-styled buttons : \
 Red (#dc3545) with Gold (#ffc107) / Yellow (gold: #ffc107) with Black (#000000) / Blue (#0d6efd) with Bronze (custom color: #ff7c02) / Green (#198754) with Silver (white: #FFFFFF)
 * Font Selection
   * The main font type was chosen with [Google Fonts](https://fonts.google.com/) and is used across the whole of the website: [Yuji Syuku](https://fonts.google.com/specimen/Yuji+Syuku?category=Serif,Display,Handwriting,Monospace). This is a well readable font type which yet gives a floating, handwriting-like, tastefully assymetric feeling which I found suitable for the magical word where they use quill and ink for writing.
