@@ -106,11 +106,11 @@ Sorting Result Page - Feedback and Quick Links\
   * This page allows user to see the actual sorting statistics for all houses at a glance, here included number of students, average satisfaction rate with sorting results, the rate of those who selected a house and also got sorted in it and the rate of those whose selected the house but got sorted in another, and also the average % of influence of other houses for students sorted in a house. Quick links to house pages and the possibility to export current total results in a csv file is also possible.
 
 Results Page - Page title\
-![Results Page](/static/readme/page-sorting-result1.png)
+![Results Page](/static/readme/page-results1.png)
 Results Page - In-House Statistics\
-![Results Page](/static/readme/page-sorting-result2.png)
+![Results Page](/static/readme/page-results2.png)
 Results Page - Influence of other Houses\
-![Results Page](/static/readme/page-sorting-result3.png)
+![Results Page](/static/readme/page-results3.png)
 
 * __House Page__
   * This page allows user to discover a Hogwarts House in details, here included the detailed house statistics and also many interesting house-specific information like house personality traits, brief history of the house founder, the house common room and more. The lyrical house description of the Sorting Hat, as well as the randomly chosen, house-specific quote help to understand and embrace better the spirit of the given house.
