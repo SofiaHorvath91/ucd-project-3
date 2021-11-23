@@ -3,4 +3,4 @@ Get sorted & let the magic begin!
 
 
 
-![Responsive Layouts](/img/readme/responsive-design.PNG)
+![Responsive Layouts](/static/img/readme/responsive-design.PNG)
