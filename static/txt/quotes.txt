@@ -14,7 +14,7 @@ hufflepuff_"Loyalty is still the same, whether it win or lose the game; true as 
 hufflepuff_"Kindness is a language which the deaf can hear and the blind can see."_(Mark Twain)
 hufflepuff_"All happiness depends on courage and work."_(Honoré de Balzac)
 slytherin_"Intelligence without ambition is a bird without wings."_(Walter H. Cottingham)
-slytherin_"A man’s worth is no greater than the worth of his ambitions."_(Marcus Aurelius Antoninus)
+slytherin_"A man's worth is no greater than the worth of his ambitions."_(Marcus Aurelius Antoninus)
 slytherin_"One must be cunning and wicked in this world."_(Leo Tolstoy)
 slytherin_"Shoot for the moon. Even if you miss, you'll land among the stars."_(Oscar Wilde)
 slytherin_"Talent is a universal gift, but it takes a lot of courage to use it. Don't be afraid to be the best."_(Paulo Coelho)

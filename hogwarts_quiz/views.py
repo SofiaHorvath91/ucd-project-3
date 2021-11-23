@@ -376,10 +376,10 @@ def add_housepoint(count):
 # => Used in page view sorting
 def check_point_empty(point):
     # If request.post number value is null, return 0, else converted number
-    if point == '':
-        return 0
-    else:
+    try:
         return int(point)
+    except ValueError:
+        return 0
 
 
 # Convert result points to percentage
@@ -496,20 +496,30 @@ def get_all_results(house):
 
     # Turn numeric house values to result percentages
     # => As division by zero throws error, divisor check before execution
-    if count > 0:
+    try:
         selected = int(point_to_percentage(selected, count))
         gryffindor_result = round(gryffindor_result / count)
         hufflepuff_result = round(hufflepuff_result / count)
         ravenclaw_result = round(ravenclaw_result / count)
         slytherin_result = round(slytherin_result / count)
+    except ZeroDivisionError:
+        selected = 0
+        gryffindor_result = 0
+        hufflepuff_result = 0
+        ravenclaw_result = 0
+        slytherin_result = 0
 
-    if others_count > 0:
+    try:
         selected_others = int(point_to_percentage(selected_others,
                                                   others_count))
+    except ZeroDivisionError:
+        selected_others = 0
 
-    if (satisfied+not_satisfied) > 0:
+    try:
         satisfaction = int(point_to_percentage(satisfied,
-                                               (satisfied+not_satisfied)))
+                                               (satisfied + not_satisfied)))
+    except ZeroDivisionError:
+        satisfaction = 0
 
     # Passing new percentage values as array to function update_statistics
     counts = [count,
