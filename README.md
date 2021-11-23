@@ -12,6 +12,10 @@ Deployed app on [Heroku](https://heroku.com) : https://cryptic-citadel-55296.her
 Technologies : Python with [Django](https://www.djangoproject.com/) + HTML + CSS \
 Software : [PyCharm](https://www.jetbrains.com/pycharm/)
 
+The app logic which handles user input and outputs given response is written in Python programming language. \
+Django framework is used to connect app objects (models) to Python code (views), and the app logic (views) to styled HTMl pages (templates) in order to be able to present the project as web application. \
+Django also handles database where the respective records of app objects are stored.
+
 ## UX
 ### 1. User stories
 * Expectations as a user :
@@ -203,11 +207,11 @@ Pictures were treated with [Photoshop](http://www.apsportable.com/photoshop-cs6-
 * Media Source(s) used exclusively for House Page :
   * Gryffindor / Hufflepuff / Ravenclaw / Slytherin alternative crests : [Rhynn Collins (DeviantArt)](https://www.deviantart.com/rhynncollins/art/Hogwarts-House-crests-274881289)
   * Gryffindor / Hufflepuff / Ravenclaw / Slytherin traits: [Emily Corene (DeviantArt](https://www.deviantart.com/emily-corene)
-  * Gryffindor / Hufflepuff / Ravenclaw / Slytherin founders: [AkaMaiden (Tumblr](https://akamaiden.tumblr.com/post/168842476569/godric-gryffindor-helga-hufflepuff-rowena)
-  * Gryffindor / Hufflepuff / Ravenclaw / Slytherin symbols: [Harry Potter Wiki] (https://harrypotter.fandom.com/)
-  * Gryffindor / Hufflepuff / Ravenclaw / Slytherin elements: [SubPNG] (https://www.subpng.com/png-g60lu5/)
-  * Gryffindor / Hufflepuff / Ravenclaw / Slytherin common rooms: [Wizarding World (https://www.wizardingworld.com/)
-  * Gryffindor / Hufflepuff / Ravenclaw / Slytherin common ghosts: [Wizarding World (https://www.wizardingworld.com/)
+  * Gryffindor / Hufflepuff / Ravenclaw / Slytherin founders: [AkaMaiden (Tumblr)](https://akamaiden.tumblr.com/post/168842476569/godric-gryffindor-helga-hufflepuff-rowena)
+  * Gryffindor / Hufflepuff / Ravenclaw / Slytherin symbols: [Harry Potter Wiki](https://harrypotter.fandom.com/)
+  * Gryffindor / Hufflepuff / Ravenclaw / Slytherin elements: [SubPNG](https://www.subpng.com/png-g60lu5/)
+  * Gryffindor / Hufflepuff / Ravenclaw / Slytherin common rooms: [Wizarding World](https://www.wizardingworld.com/)
+  * Gryffindor / Hufflepuff / Ravenclaw / Slytherin common ghosts: [Wizarding World](https://www.wizardingworld.com/)
 ### 3. External Codes used as source / inspiration
 * Sticky Menu (Navigation Bar) : [W3Schools](https://www.w3schools.com/howto/howto_js_navbar_sticky.asp)
 * Responsive Menu (Navigation Bar) : [Bootstrap](https://getbootstrap.com/docs/4.4/components/navbar/) (also used for general styling like margins, rows)
@@ -216,7 +220,7 @@ Pictures were treated with [Photoshop](http://www.apsportable.com/photoshop-cs6-
 ### 4. Acknowledgements
 * To the Code Institute for the great course material
 * To the [Stack Overflow](https://stackoverflow.com/) & [W3Schools](https://www.w3schools.com/) as a valuable resource for solving issues.
-* To John Elder (Founder of Codemy)(https://www.udemy.com/user/johnelder3/) for his valuable [tutorial](https://www.udemy.com/course/push-django-python-apps-to-heroku/) about how to deploy Python with Django to Heroku
+* To [John Elder (Founder of Codemy)](https://www.udemy.com/user/johnelder3/) for his valuable [tutorial](https://www.udemy.com/course/push-django-python-apps-to-heroku/) about how to deploy Python with Django to Heroku
 * To all the wonderful artists, organizations and programmers who provided great source materials 
 * To J. K. Rowling for creating the most wonderful fantasy world of all time
 ### 5. Special Thanks
