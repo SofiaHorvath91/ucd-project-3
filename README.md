@@ -9,7 +9,7 @@ If you are ready, meet the most magical Hat of all, participate in the Sorting C
 ![Responsive Layouts](/static/readme/responsive-design.PNG)
 
 Deployed app on [Heroku](https://heroku.com) : https://cryptic-citadel-55296.herokuapp.com/ \
-Technologies : Python + Django + HTML + CSS \
+Technologies : Python with [Django](https://www.djangoproject.com/) + HTML + CSS \
 Software : [PyCharm](https://www.jetbrains.com/pycharm/)
 
 ## UX
@@ -168,7 +168,7 @@ The entire website was verified about accessibility using [Wave](https://wave.we
 ### 4. Bugs and Solution
 While building the application, I often encountered with zero value error while communicating between html page and python logic via Django, so each time an input is received directly / indirectly from user via UI, I set up validations for zero values in Python logic. I also wished to implement a more detailed feedback form, but due to little time, I had to find a workaround to still collect user feedback, thus I extended Result object to store the satisfaction value.
 ## Deployment
-The site was deployed to [Heroku](https://heroku.com) (find it [here](https://cryptic-citadel-55296.herokuapp.com/)) while building it with [PyCharm](https://www.jetbrains.com/pycharm/) and pushing it to GitHub Repository and Heroku via [Git Bash](https://git-scm.com/downloads).
+The site was deployed to [Heroku](https://heroku.com) (find it [here](https://cryptic-citadel-55296.herokuapp.com/)) while building it with [PyCharm](https://www.jetbrains.com/pycharm/) and pushing it to GitHub Repository and Heroku via [Git Bash](https://git-scm.com/downloads) and [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli).
 ### 1. Forking Repository
 By forking the GitHub Repository, the user can copy the original repository in his/her own GitHub account, allowing the user to view and/or make changes without affecting the original repository.
 1.	Open GitHub => GitHub Repository
@@ -183,3 +183,43 @@ By forking the GitHub Repository, the user can copy the original repository in h
 6.	Type git clone, and then paste the URL copied in Step 3.\
 $ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 7.	Press Enter
+## Credits
+* The ['Harry Potter' books](https://en.wikipedia.org/wiki/Harry_Potter) and [Wizarding World](https://en.wikipedia.org/wiki/Wizarding_World) belong to [J. K. Rowling](https://en.wikipedia.org/wiki/J._K._Rowling).
+* The ['Harry Potter' film series](https://en.wikipedia.org/wiki/Harry_Potter_(film_series)) belong to [J. K. Rowling](https://en.wikipedia.org/wiki/J._K._Rowling) / [Warner Bros](https://en.wikipedia.org/wiki/Warner_Bros.)
+### 1. Content
+* Informations / descriptions about the story of 'Harry Potter' books and about Wizarding World provided by [Harry Potter Wiki](https://harrypotter.fandom.com/)
+* House-specific quotes : [GoodReads](https://www.goodreads.com/quotes)
+### 2. Media
+Pictures were treated with [Photoshop](http://www.apsportable.com/photoshop-cs6-portable-download-4/) and [tinyPNG](https://tinypng.com/) to have a better size for online presentation.
+* Site Logo : [Vectorified](https://vectorified.com/download-image#hogwarts-icon-35.png)
+* Background image : [WallpaperDog](https://wallpaper.dog/harry-potter-hogwarts-castle-wallpapers)
+* Common sources :
+  * Hogwarts Crest : Won game image from [DecalsCity](https://decalscity.com/products/game-of-thrones-crown-die-cut-vinyl-decal-sticker)
+  * Gryffindor / Hufflepuff / Ravenclaw / Slytherin crests : [Wizarding Studies](https://wizardingstudies.wordpress.com/2016/03/18/hogwarts-houses-in-real-life/)
+  * Gryffindor / Hufflepuff / Ravenclaw / Slytherin sorting hat badges: [KindPNG](https://www.kindpng.com/) & [NicePNG](https://www.nicepng.com/) & [SeekPNG](https://www.seekpng.com/)
+* Media Source(s) used exclusively for Sorting Page :
+  * Sorting Hat image : [CustomCursor](https://custom-cursor.com/en/collection/harry-potter/hp-sortinghat-gryffindor-sword)
+  * Sorting Hat black icon : [Clipart-Library](http://clipart-library.com/clip-art/hogwarts-silhouette-clipart-3.htm)
+* Media Source(s) used exclusively for House Page :
+  * Gryffindor / Hufflepuff / Ravenclaw / Slytherin alternative crests : [Rhynn Collins (DeviantArt)](https://www.deviantart.com/rhynncollins/art/Hogwarts-House-crests-274881289)
+  * Gryffindor / Hufflepuff / Ravenclaw / Slytherin traits: [Emily Corene (DeviantArt](https://www.deviantart.com/emily-corene)
+  * Gryffindor / Hufflepuff / Ravenclaw / Slytherin founders: [AkaMaiden (Tumblr](https://akamaiden.tumblr.com/post/168842476569/godric-gryffindor-helga-hufflepuff-rowena)
+  * Gryffindor / Hufflepuff / Ravenclaw / Slytherin symbols: [Harry Potter Wiki] (https://harrypotter.fandom.com/)
+  * Gryffindor / Hufflepuff / Ravenclaw / Slytherin elements: [SubPNG] (https://www.subpng.com/png-g60lu5/)
+  * Gryffindor / Hufflepuff / Ravenclaw / Slytherin common rooms: [Wizarding World (https://www.wizardingworld.com/)
+  * Gryffindor / Hufflepuff / Ravenclaw / Slytherin common ghosts: [Wizarding World (https://www.wizardingworld.com/)
+### 3. External Codes used as source / inspiration
+* Sticky Menu (Navigation Bar) : [W3Schools](https://www.w3schools.com/howto/howto_js_navbar_sticky.asp)
+* Responsive Menu (Navigation Bar) : [Bootstrap](https://getbootstrap.com/docs/4.4/components/navbar/) (also used for general styling like margins, rows)
+* Sticky Footer (Footer) : [CSS Tricks](https://css-tricks.com/couple-takes-sticky-footer/)
+* Social Media Sharing Buttons (Footer) : [SharingButtons](https://sharingbuttons.io/)
+### 4. Acknowledgements
+* To the Code Institute for the great course material
+* To the [Stack Overflow](https://stackoverflow.com/) & [W3Schools](https://www.w3schools.com/) as a valuable resource for solving issues.
+* To John Elder (Founder of Codemy)(https://www.udemy.com/user/johnelder3/) for his valuable [tutorial](https://www.udemy.com/course/push-django-python-apps-to-heroku/) about how to deploy Python with Django to Heroku
+* To all the wonderful artists, organizations and programmers who provided great source materials 
+* To J. K. Rowling for creating the most wonderful fantasy world of all time
+### 5. Special Thanks
+* My mentor Rahul Lakhanpal for his time, kind words and support.
+* My previous private mentor Samu Gábor Tamás who taught me all I know in the last two years
+* My Mother who is always there for me and who bought me the first Harry Potter book a long time ago for Christmas
