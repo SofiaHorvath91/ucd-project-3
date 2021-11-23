@@ -14,7 +14,7 @@ Software : [PyCharm](https://www.jetbrains.com/pycharm/)
 
 The app logic which handles user input and outputs given response is written in Python programming language. \
 Django framework is used to connect app objects (models) to Python code (views), and the app logic (views) to styled HTMl pages (templates) in order to be able to present the project as web application. \
-Django also handles database where the respective records of app objects are stored.
+Django also handles database where the respective records of app objects are stored and then retrieved from for calculations.
 
 ## UX
 ### 1. User stories
@@ -152,7 +152,7 @@ Passing the global CSS file through the [W3C Jigsaw Validator](https://jigsaw.w3
 Warnings are coming from dynamic CSS variables and imported style sheets which are out of scope of validator. Also warning appears concerning -webkit/-moz effects, as these elements are out of scope for validator.
   * [CSS Style Validation](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/w3validator-css-style.pdf)
 * Python Code\
-Passing the python logic file (hogwarts_quiz/views.py) through the [PEP8 Validator](http://pep8online.com/) and no errors have been found.\
+Passing the python logic file (hogwarts_quiz/views.py) through the [PEP8 Validator](http://pep8online.com/) and no errors have been found.
   * [PEP8 Validation - Image](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/pep8-validation.PNG)
   * [PEP8 Validation - Text file](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/pep8-result_20211122_224907.txt)
 ### 2. Manual tests
