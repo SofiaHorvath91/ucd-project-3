@@ -172,7 +172,7 @@ The entire website was verified about accessibility using [Wave](https://wave.we
 ### 4. Bugs and Solution
 While building the application, I often encountered with zero value error while communicating between html page and python logic via Django, so each time an input is received directly / indirectly from user via UI, I set up validations for zero values in Python logic. I also wished to implement a more detailed feedback form, but due to little time, I had to find a workaround to still collect user feedback, thus I extended Result object to store the satisfaction value.
 ## Deployment
-The site was deployed to [Heroku](https://heroku.com) (find it [here](https://cryptic-citadel-55296.herokuapp.com/)) while building it with [PyCharm](https://www.jetbrains.com/pycharm/) and pushing it to GitHub Repository and Heroku via [Git Bash](https://git-scm.com/downloads) and [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli).
+The site was deployed to [Heroku](https://heroku.com) (find it [here](https://cryptic-citadel-55296.herokuapp.com/) and [check deployment status](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/heroku-deployment.png) while building it with [PyCharm](https://www.jetbrains.com/pycharm/) and pushing it to GitHub Repository and Heroku via [Git Bash](https://git-scm.com/downloads) and [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli).
 ### 1. Forking Repository
 By forking the GitHub Repository, the user can copy the original repository in his/her own GitHub account, allowing the user to view and/or make changes without affecting the original repository.
 1.	Open GitHub => GitHub Repository
