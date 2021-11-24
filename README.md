@@ -154,7 +154,7 @@ Warnings are coming from dynamic CSS variables and imported style sheets which a
 * Python Code\
 Passing the python logic file (hogwarts_quiz/views.py) through the [PEP8 Validator](http://pep8online.com/) and no errors have been found.
   * [PEP8 Validation - Image](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/pep8-validation.PNG)
-  * [PEP8 Validation - Text file](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/pep8-result_20211122_224907.txt)
+  * [PEP8 Validation - Text file](https://github.com/SofiaHorvath91/ucd-project-3/blob/master/static/readme/pep8-result_20211124_001236.txt)
 ### 2. Manual tests
 * Desktop\
 Mozilla Firefox, Google Chrome, Microsoft Edge: pages are working fine and have the corresponding style.
